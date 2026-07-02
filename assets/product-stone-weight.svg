@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="茶席山石镇纸">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#eff3eb"/>
+      <stop offset="1" stop-color="#c8b596"/>
+    </linearGradient>
+    <linearGradient id="stone" x1="0" x2="1">
+      <stop offset="0" stop-color="#121819"/>
+      <stop offset=".48" stop-color="#58645e"/>
+      <stop offset="1" stop-color="#202928"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <ellipse cx="404" cy="604" rx="272" ry="62" fill="#1e2526" opacity=".15"/>
+  <path d="M178 537c-30-143 68-261 190-290 151-35 267 53 289 218 14 105-95 167-235 170-133 3-225-35-244-98Z" fill="url(#stone)"/>
+  <path d="M245 474c85 52 234 56 359 5" fill="none" stroke="#c09344" stroke-width="15" stroke-linecap="round" opacity=".56"/>
+  <path d="M318 348c48 34 110 38 182 10" fill="none" stroke="#f6efe3" stroke-width="11" stroke-linecap="round" opacity=".25"/>
+  <circle cx="487" cy="302" r="32" fill="#fff" opacity=".16"/>
+</svg>

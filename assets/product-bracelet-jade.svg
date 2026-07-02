@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="青瓷感手串">
+  <defs>
+    <radialGradient id="bead" cx=".35" cy=".28" r=".7">
+      <stop offset="0" stop-color="#fbfff9"/>
+      <stop offset=".55" stop-color="#a8bda9"/>
+      <stop offset="1" stop-color="#587060"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6f0e7"/>
+      <stop offset="1" stop-color="#dce7dc"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <ellipse cx="400" cy="588" rx="264" ry="58" fill="#1e2526" opacity=".12"/>
+  <path d="M212 420c-18-111 80-201 202-193 136 8 237 106 207 223-24 96-138 151-261 128-79-15-134-71-148-158Z" fill="none" stroke="#273030" stroke-width="24" stroke-linecap="round"/>
+  <g fill="url(#bead)" stroke="#fff" stroke-width="6" stroke-opacity=".62">
+    <circle cx="208" cy="409" r="55"/>
+    <circle cx="242" cy="309" r="55"/>
+    <circle cx="337" cy="252" r="55"/>
+    <circle cx="454" cy="257" r="55"/>
+    <circle cx="558" cy="323" r="55"/>
+    <circle cx="606" cy="431" r="55"/>
+    <circle cx="553" cy="528" r="55"/>
+    <circle cx="439" cy="573" r="55"/>
+    <circle cx="318" cy="552" r="55"/>
+  </g>
+  <circle cx="396" cy="419" r="70" fill="#a74437"/>
+  <circle cx="396" cy="419" r="34" fill="#f4c9a0"/>
+</svg>

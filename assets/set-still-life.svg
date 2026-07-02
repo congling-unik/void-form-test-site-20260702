@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-label="新手入局套装">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0" stop-color="#1e2526"/>
+      <stop offset="1" stop-color="#718672"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="420" fill="url(#bg)"/>
+  <circle cx="1010" cy="100" r="140" fill="#fff" opacity=".08"/>
+  <ellipse cx="810" cy="310" rx="250" ry="42" fill="#000" opacity=".18"/>
+  <rect x="744" y="138" width="250" height="170" rx="22" fill="#f6efe3" opacity=".9"/>
+  <path d="M782 208h170M782 248h120" stroke="#a74437" stroke-width="16" stroke-linecap="round"/>
+  <path d="M594 302c-12-84 63-140 149-117 79 22 122 96 78 154-39 51-135 47-191 5-23-18-33-30-36-42Z" fill="none" stroke="#101818" stroke-width="18"/>
+  <g fill="#9fb9a4">
+    <circle cx="595" cy="298" r="28"/>
+    <circle cx="632" cy="232" r="28"/>
+    <circle cx="704" cy="204" r="28"/>
+    <circle cx="776" cy="231" r="28"/>
+    <circle cx="822" cy="292" r="28"/>
+    <circle cx="779" cy="351" r="28"/>
+    <circle cx="704" cy="356" r="28"/>
+    <circle cx="635" cy="337" r="28"/>
+  </g>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">当代文玩组合</title>
+  <desc id="desc">桌面上的手串、香器、茶席器物和礼盒组合。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2eadc"/>
+      <stop offset="0.55" stop-color="#dfe9de"/>
+      <stop offset="1" stop-color="#cbb08e"/>
+    </linearGradient>
+    <radialGradient id="jade" cx=".35" cy=".28" r=".72">
+      <stop offset="0" stop-color="#f8fff8"/>
+      <stop offset=".55" stop-color="#9fb9a4"/>
+      <stop offset="1" stop-color="#526f5f"/>
+    </radialGradient>
+    <linearGradient id="stone" x1="0" x2="1">
+      <stop offset="0" stop-color="#101718"/>
+      <stop offset=".5" stop-color="#53615b"/>
+      <stop offset="1" stop-color="#202827"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#1e2526" flood-opacity=".2"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <path d="M0 614c210-91 367-102 520-36 171 74 299 79 457 15 90-37 163-44 223-31v338H0Z" fill="#f8f5ee" opacity=".88"/>
+  <ellipse cx="620" cy="684" rx="430" ry="86" fill="#1e2526" opacity=".12"/>
+  <g filter="url(#shadow)">
+    <rect x="622" y="244" width="330" height="360" rx="26" fill="#273030"/>
+    <rect x="652" y="274" width="270" height="300" rx="18" fill="#f5efe4"/>
+    <path d="M704 378h168M704 424h168M704 470h124" stroke="#a74437" stroke-width="15" stroke-linecap="round" opacity=".8"/>
+    <circle cx="795" cy="328" r="28" fill="#c09344"/>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="M264 642c-42-12-76-43-82-83-9-62 50-117 133-124 102-9 197 48 206 126 7 61-48 109-128 112-41 2-85-8-129-31Z" fill="none" stroke="#1e2526" stroke-width="22" stroke-linecap="round"/>
+    <g fill="url(#jade)" stroke="#f8fff8" stroke-opacity=".55" stroke-width="5">
+      <circle cx="216" cy="548" r="38"/>
+      <circle cx="268" cy="491" r="38"/>
+      <circle cx="346" cy="473" r="38"/>
+      <circle cx="429" cy="500" r="38"/>
+      <circle cx="483" cy="562" r="38"/>
+      <circle cx="455" cy="628" r="38"/>
+      <circle cx="378" cy="654" r="38"/>
+      <circle cx="294" cy="638" r="38"/>
+    </g>
+    <circle cx="337" cy="566" r="48" fill="#a74437"/>
+    <circle cx="337" cy="566" r="22" fill="#f1c7a4"/>
+  </g>
+  <g filter="url(#shadow)">
+    <ellipse cx="846" cy="682" rx="144" ry="34" fill="#1e2526" opacity=".16"/>
+    <path d="M738 632c18-86 195-88 220-2 13 46-39 79-108 80-71 1-122-32-112-78Z" fill="url(#stone)"/>
+    <path d="M785 604c34 16 82 16 127 0" fill="none" stroke="#c09344" stroke-width="8" stroke-linecap="round" opacity=".5"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="132" y="214" width="214" height="286" rx="24" fill="#fbfaf6"/>
+    <rect x="162" y="252" width="154" height="38" rx="19" fill="#a74437"/>
+    <path d="M183 338h112M183 384h98M183 430h124" stroke="#718672" stroke-width="14" stroke-linecap="round"/>
+    <path d="M375 196c32 60 6 92-17 127-29 43 2 74-8 104" fill="none" stroke="#273030" stroke-width="8" stroke-linecap="round" opacity=".35"/>
+  </g>
+  <g opacity=".55">
+    <circle cx="1026" cy="186" r="64" fill="#fff"/>
+    <circle cx="1062" cy="186" r="64" fill="#dfe9de"/>
+  </g>
+</svg>

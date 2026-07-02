@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Obsidian tiger eye bracelet">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f0ece4"/>
+      <stop offset="1" stop-color="#d7d0c3"/>
+    </linearGradient>
+    <radialGradient id="obsidian" cx=".32" cy=".26" r=".72">
+      <stop offset="0" stop-color="#586067"/>
+      <stop offset=".58" stop-color="#151719"/>
+      <stop offset="1" stop-color="#050607"/>
+    </radialGradient>
+    <radialGradient id="tiger" cx=".33" cy=".25" r=".72">
+      <stop offset="0" stop-color="#f4cf75"/>
+      <stop offset=".55" stop-color="#9e6120"/>
+      <stop offset="1" stop-color="#3b2210"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <ellipse cx="400" cy="596" rx="260" ry="55" fill="#171412" opacity=".14"/>
+  <path d="M195 409c-12-117 99-203 229-181 127 21 216 126 180 235-31 95-145 143-267 107-86-25-134-84-142-161Z" fill="none" stroke="#111" stroke-width="22"/>
+  <g stroke="#2b2b2b" stroke-width="5">
+    <circle cx="201" cy="407" r="50" fill="url(#obsidian)"/>
+    <circle cx="251" cy="309" r="50" fill="url(#tiger)"/>
+    <circle cx="354" cy="256" r="50" fill="url(#obsidian)"/>
+    <circle cx="465" cy="268" r="50" fill="url(#obsidian)"/>
+    <circle cx="557" cy="341" r="50" fill="url(#tiger)"/>
+    <circle cx="601" cy="449" r="50" fill="url(#obsidian)"/>
+    <circle cx="545" cy="543" r="50" fill="url(#tiger)"/>
+    <circle cx="431" cy="584" r="50" fill="url(#obsidian)"/>
+    <circle cx="316" cy="558" r="50" fill="url(#obsidian)"/>
+  </g>
+  <g fill="#c29a50">
+    <circle cx="390" cy="421" r="18"/>
+    <circle cx="431" cy="421" r="18"/>
+  </g>
+</svg>
