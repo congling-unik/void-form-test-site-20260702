@@ -686,9 +686,14 @@ p {
 }
 
 .primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--ink);
   color: var(--panel);
   background: var(--ink);
+  text-align: center;
+  text-decoration: none;
 }
 
 .primary-button:hover {

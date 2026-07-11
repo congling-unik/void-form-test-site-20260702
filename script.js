@@ -1,46 +1,48 @@
 const products = [
   {
     id: "p1",
-    name: "水晶串",
+    name: "浅绿水晶串｜8mm 意向测试",
     category: "crystal",
     price: 88,
-    tag: "测试款",
+    tag: "候选款 · 样品待确认",
     image: "assets/product-crystal-test-01.jpg",
-    material: "清透绿水晶、弹力线",
-    size: "7-8mm｜可备注手围",
-    intro: "清透浅绿，适合第一次尝试天然水晶串和日常柔和穿搭。",
-    details: ["虚拟测试款，用于跑通页面与社媒自动化", "天然矿石会有棉、纹和色带", "可备注手围后调整", "避免香水、酒精和硬物磕碰"],
+    material: "候选：8mm 绿东陵素串｜材质待验样",
+    size: "预计 8mm｜手围待实物确认",
+    intro: "先看大家是否喜欢浅绿、清爽、日常好搭的方向；图片是概念测试图，不代表最终到货实物。",
+    details: ["意向测试款，样品与供货条件确认后才开放正式购买", "预计售价 88 元，最终以真实 SKU 为准", "材质、色差、珠径、颗数和手围均待样品确认", "现在可预约并私信关键词“绿”"],
   },
   {
     id: "p2",
-    name: "木珠串",
+    name: "深浅双拼木珠串｜8mm 意向测试",
     category: "wood",
     price: 88,
-    tag: "测试款",
+    tag: "候选款 · 样品待确认",
     image: "assets/product-wood-test-01.jpg",
-    material: "暖色天然木珠、弹力线",
-    size: "8mm｜可备注手围",
-    intro: "温润木色，适合日常陪伴、新中式和偏安静的穿搭。",
-    details: ["虚拟测试款，用于跑通页面与社媒自动化", "木珠纹理和深浅每条不同", "保持干燥，少碰水", "可备注手围后调整"],
+    material: "候选：8mm 深浅双拼木珠｜木种待确认",
+    size: "预计 8mm｜手围待实物确认",
+    intro: "先测试大家是否喜欢温润木纹和中性日常方向；图片是概念测试图，不代表最终到货实物。",
+    details: ["意向测试款，样品与代发条件确认后才开放正式购买", "预计售价 88 元，最终以真实 SKU 为准", "木种、处理方式、掉色、气味和绳线均待样品确认", "现在可预约并私信关键词“木”"],
   },
 ];
 
+const instagramProfileUrl = "https://www.instagram.com/duck.3428348/";
+
 const productEnglish = {
   p1: {
-    name: "Pale Green Crystal Bracelet",
-    tag: "Test piece",
-    material: "Pale green crystal, elastic cord",
-    size: "7-8mm beads | wrist size notes accepted",
-    intro: "Clear pale green beads for first-time natural bracelet testing and quiet daily styling.",
-    details: ["Virtual test item for storefront and social automation", "Natural stones may show clouds, lines, and color bands", "Sizing notes accepted", "Keep away from perfume, alcohol, and hard impacts"],
+    name: "Pale Green Bracelet | 8mm Interest Test",
+    tag: "Candidate | sample pending",
+    material: "Candidate: 8mm green aventurine | material pending verification",
+    size: "Expected 8mm | wrist fit pending sample",
+    intro: "An interest test for a pale green everyday bracelet. The image is a concept visual, not the final delivered item.",
+    details: ["Pre-launch interest test; formal ordering opens only after sample approval", "Expected price CNY 88; final SKU details pending", "Material, color, bead size, count, and fit need verification", "Reserve by messaging the keyword GREEN"],
   },
   p2: {
-    name: "Warm Wood Bead Bracelet",
-    tag: "Test piece",
-    material: "Warm natural wood beads, elastic cord",
-    size: "8mm beads | wrist size notes accepted",
-    intro: "Warm matte wood beads for daily companionship, calm outfits, and natural texture.",
-    details: ["Virtual test item for storefront and social automation", "Texture and tone vary naturally", "Keep dry and avoid soaking", "Sizing notes accepted"],
+    name: "Two-tone Wood Bracelet | 8mm Interest Test",
+    tag: "Candidate | sample pending",
+    material: "Candidate: 8mm two-tone wood beads | species pending verification",
+    size: "Expected 8mm | wrist fit pending sample",
+    intro: "An interest test for a warm, understated two-tone wood bracelet. The image is a concept visual, not the final delivered item.",
+    details: ["Pre-launch interest test; formal ordering opens only after sample and fulfillment approval", "Expected price CNY 88; final SKU details pending", "Wood species, finish, color transfer, scent, and cord need verification", "Reserve by messaging the keyword WOOD"],
   },
 };
 
@@ -82,7 +84,7 @@ const translations = {
     heroTitle: "全部商品",
     heroBody: "",
     heroAlt: "水晶串与木珠串测试商品图",
-    inStock: "测试价",
+    inStock: "意向价",
     sevenDays: "手围",
     easyReturns: "可备注",
     sizeAdvice: "咨询确认",
@@ -145,7 +147,7 @@ const translations = {
     leadContact: "微信/邮箱",
     leadContactPlaceholder: "留下联系方式",
     leadSubmit: "保存咨询需求",
-    leadSaved: "咨询需求已保存，可接入表单或客服系统。",
+    leadSaved: "偏好已保存到本机；要让我们收到，请通过预约清单去 Instagram 私信。",
     leadCount: "已保存 {count} 条测试需求",
     leadExport: "导出线索 CSV",
     leadEmptyExport: "还没有可导出的咨询需求。",
@@ -154,15 +156,17 @@ const translations = {
     freeShippingReady: "已解锁小样包装",
     bonusLeft: "再加 {amount} 解锁礼盒升级",
     bonusReady: "已解锁礼盒升级",
+    reservationStatus: "当前只记录意向，不触发付款或备货。",
+    dmKeyword: "私信关键词：{keyword}",
     stickyText: "水晶串 · 木珠串",
     stickyCta: "查看拍品",
-    cartTitle: "购物车",
+    cartTitle: "预约清单",
     cartClose: "关闭购物车",
     subtotal: "小计",
-    cartNote: "当前先用咨询清单承接下单意向，下一步接入正式支付。",
-    checkout: "提交下单咨询",
+    cartNote: "样品通过后才开放正式付款。现在复制预约内容并去品牌 Instagram 私信。",
+    checkout: "去 Instagram 私信预约",
     dialogClose: "关闭详情",
-    addToBag: "加入购物车",
+    addToBag: "加入预约清单",
     view: "查看详情",
     viewDetails: "查看{name}详情",
     cartEmpty: "咨询清单还是空的，先挑一件喜欢的。",
@@ -170,19 +174,19 @@ const translations = {
     decrease: "减少{name}",
     increase: "增加{name}",
     remove: "移除",
-    addedToBag: "{name} 已加入购物车",
+    addedToBag: "{name} 已加入预约清单",
     checkoutEmpty: "先加入商品，再提交咨询。",
-    checkoutSuccess: "咨询单已保存，可导出给客服跟进。",
+    checkoutSuccess: "正在打开品牌 Instagram。",
     lot: "商品",
-    estimate: "价格",
-    specialistPick: "NEW",
+    estimate: "预计价格",
+    specialistPick: "意向测试",
     bottomNavLabel: "底部导航",
     bottomHome: "首页",
     bottomCategory: "分类",
-    bottomCart: "购物车",
+    bottomCart: "预约",
     bottomService: "客服",
     footerBrand: "有无 Void & Form",
-    footerNote: "测试期独立站：先验证水晶串、木珠串的展示、咨询和社媒承接。",
+    footerNote: "意向测试期：样品和材质确认前只收预约，不收正式货款。",
     footerPolicyNav: "政策页面",
     footerPrivacy: "隐私",
     footerShipping: "物流",
@@ -226,7 +230,7 @@ const translations = {
     heroTitle: "All Products",
     heroBody: "",
     heroAlt: "Test product images for crystal and wood bead bracelets",
-    inStock: "Test price",
+    inStock: "Interest price",
     sevenDays: "Wrist size",
     easyReturns: "Notes accepted",
     sizeAdvice: "Confirm by chat",
@@ -289,7 +293,7 @@ const translations = {
     leadContact: "WeChat / email",
     leadContactPlaceholder: "Leave contact details",
     leadSubmit: "Save inquiry brief",
-    leadSaved: "Inquiry brief saved. Connect this to a form or support system next.",
+    leadSaved: "Saved on this device. Use the reservation list to message the brand on Instagram so we can receive it.",
     leadCount: "{count} test inquiries saved",
     leadExport: "Export leads CSV",
     leadEmptyExport: "No inquiry briefs to export yet.",
@@ -298,15 +302,17 @@ const translations = {
     freeShippingReady: "Sample packaging unlocked",
     bonusLeft: "Add {amount} to unlock gift-box upgrade",
     bonusReady: "Gift-box upgrade unlocked",
+    reservationStatus: "This records interest only and does not trigger payment or stock allocation.",
+    dmKeyword: "DM keyword: {keyword}",
     stickyText: "Crystal bracelet · wood bead bracelet",
     stickyCta: "View lots",
-    cartTitle: "Cart",
+    cartTitle: "Reservation list",
     cartClose: "Close shopping bag",
     subtotal: "Subtotal",
-    cartNote: "This cart records order intent for now. Formal payment will be connected next.",
-    checkout: "Send order inquiry",
+    cartNote: "Formal payment opens only after sample approval. Copy your reservation and message the brand on Instagram.",
+    checkout: "Reserve via Instagram DM",
     dialogClose: "Close product details",
-    addToBag: "Add to cart",
+    addToBag: "Add to reservation list",
     view: "Details",
     viewDetails: "View details for {name}",
     cartEmpty: "Your bag is empty. Start with something you love.",
@@ -314,19 +320,19 @@ const translations = {
     decrease: "Decrease {name}",
     increase: "Increase {name}",
     remove: "Remove",
-    addedToBag: "{name} added to cart",
+    addedToBag: "{name} added to the reservation list",
     checkoutEmpty: "Add a product before sending an inquiry.",
-    checkoutSuccess: "Inquiry saved and ready for export.",
+    checkoutSuccess: "Opening the brand Instagram profile.",
     lot: "Item",
-    estimate: "Price",
-    specialistPick: "NEW",
+    estimate: "Expected price",
+    specialistPick: "INTEREST TEST",
     bottomNavLabel: "Bottom navigation",
     bottomHome: "Home",
     bottomCategory: "Category",
-    bottomCart: "Cart",
+    bottomCart: "Reserve",
     bottomService: "Service",
     footerBrand: "Void & Form",
-    footerNote: "Test-stage independent store for crystal and wood bead bracelet display, inquiry, and social traffic.",
+    footerNote: "Interest-test stage: reservations only until samples and materials are verified; no formal payment yet.",
     footerPolicyNav: "Policy pages",
     footerPrivacy: "Privacy",
     footerShipping: "Shipping",
@@ -519,25 +525,48 @@ function submitLeadForm() {
   showToast(t("leadSaved"));
 }
 
+function copyReservationText(text) {
+  if (navigator.clipboard?.writeText) {
+    return navigator.clipboard.writeText(text).catch(() => false);
+  }
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  textarea.remove();
+  return Promise.resolve(true);
+}
+
 function submitCartInquiry() {
   const lines = getCartLines();
   if (!lines.length) {
     showToast(t("checkoutEmpty"));
-    return;
+    return false;
   }
 
   const totalPrice = lines.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const items = lines
+    .map((item) => `${getProductCopy(item).name} x ${item.quantity}`)
+    .join(" / ");
   saveLead({
     type: "cart",
     use: t("cartTitle"),
     budget: formatPrice(totalPrice),
     contact: "",
     total: formatPrice(totalPrice),
-    items: lines
-      .map((item) => `${getProductCopy(item).name} x ${item.quantity}`)
-      .join(" / "),
+    items,
   });
+
+  const reservationText = state.language === "en"
+    ? `Void & Form reservation\nItems: ${items}\nExpected total: ${formatPrice(totalPrice)}\nPlease confirm the material, wrist fit, sample status, and expected dispatch time.`
+    : `有无意向预约\n款式：${items}\n预计合计：${formatPrice(totalPrice)}\n请帮我确认材质、手围、样品状态和预计发货时间。`;
+  copyReservationText(reservationText);
   showToast(t("checkoutSuccess"));
+  return true;
 }
 
 function applyStaticTranslations() {
@@ -700,16 +729,15 @@ function renderCart() {
   const lines = getCartLines();
   const totalQuantity = lines.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = lines.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const reservationKeywords = [...new Set(lines.map((item) => (item.id === "p2" ? (state.language === "en" ? "WOOD" : "木") : (state.language === "en" ? "GREEN" : "绿"))))];
 
   cartCount.textContent = totalQuantity;
   cartTotal.textContent = formatPrice(totalPrice);
 
   if (cartProgress) {
-    const shippingLeft = Math.max(0, 99 - totalPrice);
-    const bonusLeft = Math.max(0, 199 - totalPrice);
     cartProgress.innerHTML = `
-      <span>${shippingLeft ? t("freeShippingLeft", { amount: formatPrice(shippingLeft) }) : t("freeShippingReady")}</span>
-      <span>${bonusLeft ? t("bonusLeft", { amount: formatPrice(bonusLeft) }) : t("bonusReady")}</span>
+      <span>${t("reservationStatus")}</span>
+      ${reservationKeywords.length ? `<strong>${t("dmKeyword", { keyword: reservationKeywords.join(" + ") })}</strong>` : ""}
     `;
   }
 
@@ -858,7 +886,8 @@ document.addEventListener("click", (event) => {
   }
 
   if (target.closest("[data-checkout]")) {
-    submitCartInquiry();
+    const canContinue = submitCartInquiry();
+    if (!canContinue) event.preventDefault();
   }
 
   if (target.closest("[data-export-leads]")) exportLeads();
