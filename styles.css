@@ -22,6 +22,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 94px;
 }
 
 body {
@@ -85,10 +86,11 @@ img {
   font-family: var(--serif);
   font-size: 32px;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0;
   line-height: 1;
   text-align: center;
-  text-indent: 0.2em;
+  text-indent: 0;
+  white-space: nowrap;
 }
 
 .main-nav {
@@ -104,7 +106,7 @@ img {
   color: var(--ink-soft);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -193,6 +195,7 @@ img {
   grid-template-columns: auto auto;
   gap: 9px;
   padding: 0 12px;
+  text-decoration: none;
 }
 
 .cart-count {
@@ -323,7 +326,7 @@ main {
   color: rgba(255, 255, 255, 0.76);
   font-size: 12px;
   font-weight: 900;
-  letter-spacing: 0.18em;
+  letter-spacing: 0;
 }
 
 .hero-dots {
@@ -374,7 +377,7 @@ main {
   color: var(--ink);
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.22em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -534,7 +537,7 @@ p {
   color: var(--ink);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -596,7 +599,7 @@ p {
   background: rgba(255, 255, 255, 0.92);
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -620,7 +623,7 @@ p {
   color: var(--ink);
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -1026,7 +1029,7 @@ p {
   color: var(--ink);
   font-size: 12px;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-decoration: none;
 }
 
@@ -1392,6 +1395,10 @@ p {
 }
 
 @media (max-width: 760px) {
+  html {
+    scroll-padding-top: 132px;
+  }
+
   .site-header {
     grid-template-columns: 1fr auto;
     gap: 14px;
@@ -1404,7 +1411,7 @@ p {
   }
 
   .brand strong {
-    font-size: 26px;
+    font-size: 22px;
     text-align: left;
   }
 
@@ -1487,6 +1494,23 @@ p {
   .shop-rail {
     display: block;
     padding-top: 18px;
+  }
+
+  #shop,
+  #inquiry {
+    scroll-margin-top: 132px;
+  }
+
+  .category-tabs {
+    display: grid;
+    grid-template-columns: 0.7fr 1.15fr 1.15fr;
+    overflow: hidden;
+  }
+
+  .tab {
+    min-width: 0;
+    padding: 0 8px;
+    font-size: 11px;
   }
 
   h1 {
@@ -1585,7 +1609,7 @@ p {
   }
 
   .brand strong {
-    font-size: 22px;
+    font-size: 19px;
   }
 
   .header-actions .icon-button[data-search-focus] {

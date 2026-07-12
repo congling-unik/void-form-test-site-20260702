@@ -4,6 +4,7 @@ const products = [
     name: "浅绿水晶串｜8mm 意向测试",
     category: "crystal",
     price: 88,
+    priceUsd: 24,
     tag: "候选款 · 样品待确认",
     image: "assets/product-crystal-test-01.jpg",
     material: "候选：8mm 绿东陵素串｜材质待验样",
@@ -16,6 +17,7 @@ const products = [
     name: "深浅双拼木珠串｜8mm 意向测试",
     category: "wood",
     price: 88,
+    priceUsd: 24,
     tag: "候选款 · 样品待确认",
     image: "assets/product-wood-test-01.jpg",
     material: "候选：8mm 深浅双拼木珠｜木种待确认",
@@ -29,20 +31,22 @@ const instagramProfileUrl = "https://www.instagram.com/duck.3428348/";
 
 const productEnglish = {
   p1: {
-    name: "Pale Green Bracelet | 8mm Interest Test",
-    tag: "Candidate | sample pending",
-    material: "Candidate: 8mm green aventurine | material pending verification",
-    size: "Expected 8mm | wrist fit pending sample",
-    intro: "An interest test for a pale green everyday bracelet. The image is a concept visual, not the final delivered item.",
-    details: ["Pre-launch interest test; formal ordering opens only after sample approval", "Expected price CNY 88; final SKU details pending", "Material, color, bead size, count, and fit need verification", "Reserve by messaging the keyword GREEN"],
+    name: "Pale Green Bead Bracelet",
+    tag: "Preview release",
+    material: "Pale green beads | final material confirmed before checkout",
+    size: "Expected 8mm | wrist fit confirmed by chat",
+    intro: "A quiet pale-green bracelet for everyday wear. Final material and fit will be confirmed before checkout opens.",
+    details: ["Expected launch price US$24 before international shipping", "Final material, color, bead size, count, and fit will be confirmed before checkout", "Preview imagery will be replaced by final product photography", "DM GREEN on Instagram for availability"],
+    dmKeyword: "GREEN",
   },
   p2: {
-    name: "Two-tone Wood Bracelet | 8mm Interest Test",
-    tag: "Candidate | sample pending",
-    material: "Candidate: 8mm two-tone wood beads | species pending verification",
-    size: "Expected 8mm | wrist fit pending sample",
-    intro: "An interest test for a warm, understated two-tone wood bracelet. The image is a concept visual, not the final delivered item.",
-    details: ["Pre-launch interest test; formal ordering opens only after sample and fulfillment approval", "Expected price CNY 88; final SKU details pending", "Wood species, finish, color transfer, scent, and cord need verification", "Reserve by messaging the keyword WOOD"],
+    name: "Warm Wood Bead Bracelet",
+    tag: "Preview release",
+    material: "Warm wood beads | final wood species confirmed before checkout",
+    size: "Expected 8mm | wrist fit confirmed by chat",
+    intro: "A warm, understated wood-bead bracelet for everyday wear. Final material and fit will be confirmed before checkout opens.",
+    details: ["Expected launch price US$24 before international shipping", "Wood species, finish, color transfer, cord, and fit will be confirmed before checkout", "Preview imagery will be replaced by final product photography", "DM WOOD on Instagram for availability"],
+    dmKeyword: "WOOD",
   },
 };
 
@@ -60,8 +64,8 @@ const translations = {
     navCare: "新品",
     navService: "客服",
     searchAria: "搜索商品",
-    cartOpen: "打开购物车",
-    bagIcon: "袋",
+    cartOpen: "前往咨询",
+    bagIcon: "私信",
     heroSliderLabel: "首页图片轮播",
     heroDotsLabel: "切换首页图片",
     introAlt: "宁静绿色户外柔光氛围图：水晶串与木珠串",
@@ -79,6 +83,8 @@ const translations = {
     introNoteTwo: "木珠",
     introNoteThree: "测试图",
     introNoteFour: "自动化",
+    pricePoint: "88",
+    servicePoint: "客服",
     shopInfo: "店铺信息",
     launch: "FIRST DROP",
     heroTitle: "全部商品",
@@ -144,14 +150,18 @@ const translations = {
     leadUse: "用途",
     leadBudget: "预算",
     leadBudgetPlaceholder: "例：88",
+    leadCountry: "所在国家/地区",
+    leadCountryPlaceholder: "例：中国",
+    leadWrist: "手围",
+    leadWristPlaceholder: "厘米或英寸",
+    leadTiming: "购买时间",
+    leadTimingReady: "开放后准备购买",
+    leadTimingMonth: "一个月内",
+    leadTimingCompare: "先比较看看",
     leadContact: "微信/邮箱",
     leadContactPlaceholder: "留下联系方式",
-    leadSubmit: "保存咨询需求",
-    leadSaved: "偏好已保存到本机；要让我们收到，请通过预约清单去 Instagram 私信。",
-    leadCount: "已保存 {count} 条测试需求",
-    leadExport: "导出线索 CSV",
-    leadEmptyExport: "还没有可导出的咨询需求。",
-    leadExported: "已导出 {count} 条咨询需求。",
+    leadSubmit: "复制咨询并打开 Instagram",
+    leadSaved: "咨询内容已复制，正在打开 Instagram。",
     freeShippingLeft: "再加 {amount} 解锁小样包装",
     freeShippingReady: "已解锁小样包装",
     bonusLeft: "再加 {amount} 解锁礼盒升级",
@@ -195,10 +205,10 @@ const translations = {
   },
   en: {
     pageTitle: "VOID & FORM | Crystal & Wood Bead Bracelets",
-    pageDescription: "VOID & FORM starts with under-¥100 crystal and wood bead bracelets while building the independent-store purchase flow.",
+    pageDescription: "VOID & FORM creates quiet pale-green and warm-wood bead bracelets for everyday wear.",
     brandHome: "VOID & FORM home",
     brandMark: "Y",
-    brandName: "有 無",
+    brandName: "VOID & FORM",
     brandSub: "",
     navLabel: "Main navigation",
     navShop: "Home",
@@ -206,15 +216,15 @@ const translations = {
     navCare: "New",
     navService: "Service",
     searchAria: "Search products",
-    cartOpen: "Open shopping bag",
-    bagIcon: "Bag",
+    cartOpen: "Message VOID & FORM",
+    bagIcon: "DM",
     heroSliderLabel: "Homepage image carousel",
     heroDotsLabel: "Switch homepage image",
     introAlt: "Serene green outdoor lifestyle image of crystal and wood bead bracelets",
     introAltOne: "Serene green outdoor image of a wrist wearing a pale green crystal bracelet",
     introAltTwo: "Quiet mossy garden image of a wrist wearing a warm wood bead bracelet",
     introEntriesLabel: "Homepage entries",
-    introLabel: "UNDER ¥100 · NATURAL TEST DROP",
+    introLabel: "QUIET BRACELETS · FIRST DROP",
     introTitle: "",
     introBody: "",
     introEntryShop: "",
@@ -223,14 +233,16 @@ const translations = {
     introEntryInquiry: "",
     introNoteOne: "Crystal",
     introNoteTwo: "Wood beads",
-    introNoteThree: "Test images",
-    introNoteFour: "Automation",
+    introNoteThree: "Everyday wear",
+    introNoteFour: "First drop",
+    pricePoint: "Under US$25",
+    servicePoint: "Support",
     shopInfo: "Store information",
     launch: "FIRST DROP",
     heroTitle: "All Products",
     heroBody: "",
-    heroAlt: "Test product images for crystal and wood bead bracelets",
-    inStock: "Interest price",
+    heroAlt: "Concept previews of pale green and warm wood bead bracelets",
+    inStock: "Target first-drop price",
     sevenDays: "Wrist size",
     easyReturns: "Notes accepted",
     sizeAdvice: "Confirm by chat",
@@ -242,8 +254,8 @@ const translations = {
     sortHigh: "Test price: high to low",
     categoryLabel: "Product categories",
     categoryAll: "All",
-    categoryCrystal: "Crystal bracelet",
-    categoryWood: "Wood bead bracelet",
+    categoryCrystal: "Pale green",
+    categoryWood: "Warm wood",
     categoryJade: "Jade",
     categoryCharm: "Charm",
     empty: "No matching products found.",
@@ -260,9 +272,9 @@ const translations = {
     care3Title: "Gifts should be easy to understand",
     care3Body: "Pale green crystal supports soft daily styling, while warm wood beads support quiet outfits. These two pieces test the conversion path first.",
     serviceLabel: "Service promise",
-    service1: "Crystal bracelet ¥88",
-    service2: "Wood bead bracelet ¥88",
-    service3: "Wrist size notes supported",
+    service1: "Pale green preview",
+    service2: "Warm wood preview",
+    service3: "Fit confirmed before orders open",
     finderLabel: "BUYER GUIDE",
     finderTitle: "Find the first piece in 30 seconds",
     finderBody: "No curio knowledge needed: choose by photogenic color, low-key commuting, gifting, or natural texture.",
@@ -285,34 +297,38 @@ const translations = {
     subscribeBody: "Obsidian with tiger eye: low-key but visible, a good unisex commuting test piece.",
     subscribeCta: "Add to inquiry list ¥79",
     leadLabel: "SERVICE",
-    leadTitle: "Service & Order Inquiry",
+    leadTitle: "Join the First Drop",
     leadBody: "",
-    leadUse: "Use",
-    leadBudget: "Budget",
-    leadBudgetPlaceholder: "e.g. 88",
-    leadContact: "WeChat / email",
-    leadContactPlaceholder: "Leave contact details",
-    leadSubmit: "Save inquiry brief",
-    leadSaved: "Saved on this device. Use the reservation list to message the brand on Instagram so we can receive it.",
-    leadCount: "{count} test inquiries saved",
-    leadExport: "Export leads CSV",
-    leadEmptyExport: "No inquiry briefs to export yet.",
-    leadExported: "{count} inquiry briefs exported.",
+    leadUse: "Piece",
+    leadBudget: "Comfortable price",
+    leadBudgetPlaceholder: "e.g. US$24",
+    leadCountry: "Country / region",
+    leadCountryPlaceholder: "e.g. United States",
+    leadWrist: "Wrist size",
+    leadWristPlaceholder: "cm or in",
+    leadTiming: "Purchase timing",
+    leadTimingReady: "Ready when available",
+    leadTimingMonth: "Within a month",
+    leadTimingCompare: "Just comparing",
+    leadContact: "Email or Instagram handle",
+    leadContactPlaceholder: "How can we reach you?",
+    leadSubmit: "Copy inquiry & open Instagram",
+    leadSaved: "Inquiry copied. Instagram is opening now.",
     freeShippingLeft: "Add {amount} to unlock sample packaging",
     freeShippingReady: "Sample packaging unlocked",
     bonusLeft: "Add {amount} to unlock gift-box upgrade",
     bonusReady: "Gift-box upgrade unlocked",
-    reservationStatus: "This records interest only and does not trigger payment or stock allocation.",
-    dmKeyword: "DM keyword: {keyword}",
+    reservationStatus: "First-drop interest only. No payment or stock allocation yet.",
+    dmKeyword: "Your choice: {keyword}",
     stickyText: "Crystal bracelet · wood bead bracelet",
     stickyCta: "View lots",
-    cartTitle: "Reservation list",
+    cartTitle: "First-drop list",
     cartClose: "Close shopping bag",
     subtotal: "Subtotal",
-    cartNote: "Formal payment opens only after sample approval. Copy your reservation and message the brand on Instagram.",
-    checkout: "Reserve via Instagram DM",
+    cartNote: "No payment yet. Copy your choices and message VOID & FORM on Instagram.",
+    checkout: "Join via Instagram DM",
     dialogClose: "Close product details",
-    addToBag: "Add to reservation list",
+    addToBag: "Join first-drop list",
     view: "Details",
     viewDetails: "View details for {name}",
     cartEmpty: "Your bag is empty. Start with something you love.",
@@ -320,19 +336,19 @@ const translations = {
     decrease: "Decrease {name}",
     increase: "Increase {name}",
     remove: "Remove",
-    addedToBag: "{name} added to the reservation list",
+    addedToBag: "{name} added to your first-drop list",
     checkoutEmpty: "Add a product before sending an inquiry.",
     checkoutSuccess: "Opening the brand Instagram profile.",
     lot: "Item",
-    estimate: "Expected price",
-    specialistPick: "INTEREST TEST",
+    estimate: "Target first-drop price",
+    specialistPick: "FIRST DROP PREVIEW",
     bottomNavLabel: "Bottom navigation",
     bottomHome: "Home",
     bottomCategory: "Category",
-    bottomCart: "Reserve",
+    bottomCart: "First drop",
     bottomService: "Service",
     footerBrand: "Void & Form",
-    footerNote: "Interest-test stage: reservations only until samples and materials are verified; no formal payment yet.",
+    footerNote: "Preview release. Material, fit, shipping, and returns are confirmed before checkout opens.",
     footerPolicyNav: "Policy pages",
     footerPrivacy: "Privacy",
     footerShipping: "Shipping",
@@ -341,12 +357,20 @@ const translations = {
   },
 };
 
+const initialSearchParams = new URLSearchParams(window.location.search);
+const requestedLanguage = initialSearchParams.get("lang");
+const incomingSource = initialSearchParams.get("utm_source") || initialSearchParams.get("source");
+const initialLanguage = ["zh", "en"].includes(requestedLanguage)
+  ? requestedLanguage
+  : incomingSource === "instagram"
+    ? "en"
+    : localStorage.getItem("curioLanguage") || "en";
+
 const state = {
   category: "all",
   query: "",
   sort: "featured",
-  language: localStorage.getItem("curioLanguage") === "en" ? "en" : "zh",
-  cart: JSON.parse(localStorage.getItem("curioCart") || "{}"),
+  language: initialLanguage,
 };
 
 const trackingKey = "curioTrafficSource";
@@ -356,17 +380,11 @@ const grid = document.querySelector("[data-product-grid]");
 const emptyState = document.querySelector("[data-empty]");
 const searchInput = document.querySelector("[data-search-input]");
 const sortInput = document.querySelector("[data-sort]");
-const cartDrawer = document.querySelector("[data-cart-drawer]");
-const cartItems = document.querySelector("[data-cart-items]");
-const cartTotal = document.querySelector("[data-cart-total]");
-const cartCount = document.querySelector("[data-cart-count]");
-const cartProgress = document.querySelector("[data-cart-progress]");
 const toast = document.querySelector("[data-toast]");
 const dialog = document.querySelector("[data-product-dialog]");
 const dialogBody = document.querySelector("[data-dialog-body]");
 const fitResult = document.querySelector("[data-fit-result]");
 const leadForm = document.querySelector("[data-lead-form]");
-const leadCount = document.querySelector("[data-lead-count]");
 const heroSlides = Array.from(document.querySelectorAll("[data-hero-slide]"));
 const heroDots = Array.from(document.querySelectorAll("[data-hero-dot]"));
 let activeProductId = null;
@@ -427,9 +445,13 @@ function getLeadTracking() {
 }
 
 function formatPrice(value) {
-  const symbol = state.language === "en" ? "¥" : "￥";
+  const symbol = state.language === "en" ? "US$" : "￥";
   const locale = state.language === "en" ? "en-US" : "zh-CN";
   return `${symbol}${value.toLocaleString(locale)}`;
+}
+
+function getUnitPrice(product) {
+  return state.language === "en" ? product.priceUsd : product.price;
 }
 
 function getLotNumber(product) {
@@ -454,65 +476,10 @@ function renderFitResult(fit = "daily") {
     <p>${copy.intro}</p>
     <div class="estimate-row">
       <span>${t("estimate")}</span>
-      <strong class="price">${formatPrice(product.price)}</strong>
+      <strong class="price">${formatPrice(getUnitPrice(product))}</strong>
     </div>
-    <button class="primary-button" type="button" data-add="${product.id}">${t("addToBag")}</button>
+    <a class="primary-button" href="${instagramProfileUrl}" target="_blank" rel="noreferrer" data-dm="${product.id}">DM ${copy.dmKeyword || (product.id === "p2" ? "木" : "绿")}</a>
   `;
-}
-
-function getStoredLeads() {
-  try {
-    const value = JSON.parse(localStorage.getItem("curioLeads") || "[]");
-    return Array.isArray(value) ? value : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveLead(data) {
-  const leads = getStoredLeads();
-  const lead = {
-    id: `lead-${Date.now()}`,
-    language: state.language,
-    createdAt: new Date().toISOString(),
-    ...getLeadTracking(),
-    ...data,
-  };
-  leads.push(lead);
-  localStorage.setItem("curioLeads", JSON.stringify(leads));
-  renderLeadCount();
-  return lead;
-}
-
-function renderLeadCount() {
-  if (!leadCount) return;
-  leadCount.textContent = t("leadCount", { count: getStoredLeads().length });
-}
-
-function escapeCsv(value) {
-  return `"${String(value ?? "").replaceAll('"', '""')}"`;
-}
-
-function exportLeads() {
-  const leads = getStoredLeads();
-  if (!leads.length) {
-    showToast(t("leadEmptyExport"));
-    return;
-  }
-
-  const headers = ["createdAt", "source", "medium", "campaign", "content", "term", "landingPage", "type", "use", "budget", "contact", "items", "total", "language"];
-  const rows = leads.map((lead) => headers.map((header) => escapeCsv(lead[header])).join(","));
-  const csv = [headers.join(","), ...rows].join("\n");
-  const blob = new Blob([`\ufeff${csv}`], { type: "text/csv;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = `new-curio-leads-${new Date().toISOString().slice(0, 10)}.csv`;
-  document.body.append(anchor);
-  anchor.click();
-  anchor.remove();
-  URL.revokeObjectURL(url);
-  showToast(t("leadExported", { count: leads.length }));
 }
 
 function submitLeadForm() {
@@ -520,8 +487,27 @@ function submitLeadForm() {
   if (!leadForm.reportValidity()) return;
 
   const data = Object.fromEntries(new FormData(leadForm).entries());
-  saveLead({ type: "form", ...data });
+  const inquiryText = state.language === "en"
+    ? `VOID & FORM inquiry\nPiece: ${data.use}\nCountry / region: ${data.country}\nWrist size: ${data.wrist || "Not specified"}\nComfortable price: ${data.budget || "Not specified"}\nPurchase timing: ${data.timing || "Not specified"}\nContact: ${data.contact || "Instagram DM"}`
+    : `有无咨询\n款式：${data.use}\n国家/地区：${data.country}\n手围：${data.wrist || "未填写"}\n预算：${data.budget || "未填写"}\n购买时间：${data.timing || "未填写"}\n联系方式：${data.contact || "Instagram 私信"}`;
+  copyReservationText(inquiryText);
   leadForm.reset();
+  showToast(t("leadSaved"));
+  window.open(instagramProfileUrl, "_blank", "noopener,noreferrer");
+}
+
+function productInquiryText(product) {
+  const copy = getProductCopy(product);
+  const keyword = copy.dmKeyword || (product.id === "p2" ? "木" : "绿");
+  return state.language === "en"
+    ? `VOID & FORM inquiry\nPiece: ${copy.name}\nKeyword: ${keyword}\nCountry / region:\nWrist size:\nWould you buy at US$${product.priceUsd} before shipping?`
+    : `有无咨询\n款式：${copy.name}\n关键词：${keyword}\n国家/地区：\n手围：\n是否接受预计价格 ￥${product.price}？`;
+}
+
+function copyProductInquiry(id) {
+  const product = products.find((item) => item.id === id);
+  if (!product) return;
+  copyReservationText(productInquiryText(product));
   showToast(t("leadSaved"));
 }
 
@@ -539,34 +525,6 @@ function copyReservationText(text) {
   document.execCommand("copy");
   textarea.remove();
   return Promise.resolve(true);
-}
-
-function submitCartInquiry() {
-  const lines = getCartLines();
-  if (!lines.length) {
-    showToast(t("checkoutEmpty"));
-    return false;
-  }
-
-  const totalPrice = lines.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const items = lines
-    .map((item) => `${getProductCopy(item).name} x ${item.quantity}`)
-    .join(" / ");
-  saveLead({
-    type: "cart",
-    use: t("cartTitle"),
-    budget: formatPrice(totalPrice),
-    contact: "",
-    total: formatPrice(totalPrice),
-    items,
-  });
-
-  const reservationText = state.language === "en"
-    ? `Void & Form reservation\nItems: ${items}\nExpected total: ${formatPrice(totalPrice)}\nPlease confirm the material, wrist fit, sample status, and expected dispatch time.`
-    : `有无意向预约\n款式：${items}\n预计合计：${formatPrice(totalPrice)}\n请帮我确认材质、手围、样品状态和预计发货时间。`;
-  copyReservationText(reservationText);
-  showToast(t("checkoutSuccess"));
-  return true;
 }
 
 function applyStaticTranslations() {
@@ -597,8 +555,6 @@ function applyLanguage() {
   applyStaticTranslations();
   renderProducts();
   renderFitResult(document.querySelector("[data-fit].is-active")?.getAttribute("data-fit") || "daily");
-  renderCart();
-  renderLeadCount();
   if (dialog.open && activeProductId) renderProductDialog(activeProductId);
 }
 
@@ -637,8 +593,8 @@ function getVisibleProducts() {
     return inCategory && inQuery;
   });
 
-  if (state.sort === "low") return filtered.sort((a, b) => a.price - b.price);
-  if (state.sort === "high") return filtered.sort((a, b) => b.price - a.price);
+  if (state.sort === "low") return filtered.sort((a, b) => getUnitPrice(a) - getUnitPrice(b));
+  if (state.sort === "high") return filtered.sort((a, b) => getUnitPrice(b) - getUnitPrice(a));
   return filtered;
 }
 
@@ -667,10 +623,10 @@ function renderProducts() {
               <p class="meta">${copy.material}<br>${copy.size}</p>
               <div class="estimate-row">
                 <span>${t("estimate")}</span>
-                <strong class="price">${formatPrice(product.price)}</strong>
+                <strong class="price">${formatPrice(getUnitPrice(product))}</strong>
               </div>
               <div class="card-actions">
-                <button class="primary-button" type="button" data-add="${product.id}">${t("addToBag")}</button>
+                <a class="primary-button" href="${instagramProfileUrl}" target="_blank" rel="noreferrer" data-dm="${product.id}">DM ${copy.dmKeyword || (product.id === "p2" ? "木" : "绿")}</a>
                 <button class="quick-button" type="button" data-view="${product.id}" aria-label="${t("viewDetails", { name: copy.name })}">${t("view")}</button>
               </div>
             </div>
@@ -712,63 +668,6 @@ function focusRequestedProduct() {
   });
 }
 
-function saveCart() {
-  localStorage.setItem("curioCart", JSON.stringify(state.cart));
-}
-
-function getCartLines() {
-  return Object.entries(state.cart)
-    .map(([id, quantity]) => {
-      const product = products.find((item) => item.id === id);
-      return product ? { ...product, quantity } : null;
-    })
-    .filter(Boolean);
-}
-
-function renderCart() {
-  const lines = getCartLines();
-  const totalQuantity = lines.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = lines.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const reservationKeywords = [...new Set(lines.map((item) => (item.id === "p2" ? (state.language === "en" ? "WOOD" : "木") : (state.language === "en" ? "GREEN" : "绿"))))];
-
-  cartCount.textContent = totalQuantity;
-  cartTotal.textContent = formatPrice(totalPrice);
-
-  if (cartProgress) {
-    cartProgress.innerHTML = `
-      <span>${t("reservationStatus")}</span>
-      ${reservationKeywords.length ? `<strong>${t("dmKeyword", { keyword: reservationKeywords.join(" + ") })}</strong>` : ""}
-    `;
-  }
-
-  cartItems.innerHTML = lines.length
-    ? lines
-        .map(
-          (item) => {
-            const copy = getProductCopy(item);
-            return `
-              <article class="cart-line">
-                <img src="${item.image}" alt="${copy.name}">
-                <div>
-                  <h3>${copy.name}</h3>
-                  <span class="meta">${formatPrice(item.price)}</span>
-                  <div class="qty-row">
-                    <div class="qty-controls" aria-label="${t("quantity", { name: copy.name })}">
-                      <button type="button" data-decrease="${item.id}" aria-label="${t("decrease", { name: copy.name })}">−</button>
-                      <span>${item.quantity}</span>
-                      <button type="button" data-increase="${item.id}" aria-label="${t("increase", { name: copy.name })}">+</button>
-                    </div>
-                    <button class="secondary-button" type="button" data-remove="${item.id}">${t("remove")}</button>
-                  </div>
-                </div>
-              </article>
-            `;
-          },
-        )
-        .join("")
-    : `<p class="empty-state">${t("cartEmpty")}</p>`;
-}
-
 function showToast(message) {
   toast.textContent = message;
   toast.classList.add("is-visible");
@@ -776,34 +675,6 @@ function showToast(message) {
   showToast.timer = window.setTimeout(() => {
     toast.classList.remove("is-visible");
   }, 1800);
-}
-
-function addToCart(id, quantity = 1) {
-  state.cart[id] = (state.cart[id] || 0) + quantity;
-  saveCart();
-  renderCart();
-  const product = products.find((item) => item.id === id);
-  showToast(t("addedToBag", { name: getProductCopy(product).name }));
-}
-
-function updateQuantity(id, quantity) {
-  if (quantity <= 0) {
-    delete state.cart[id];
-  } else {
-    state.cart[id] = quantity;
-  }
-  saveCart();
-  renderCart();
-}
-
-function openCart() {
-  cartDrawer.classList.add("is-open");
-  cartDrawer.setAttribute("aria-hidden", "false");
-}
-
-function closeCart() {
-  cartDrawer.classList.remove("is-open");
-  cartDrawer.setAttribute("aria-hidden", "true");
 }
 
 function renderProductDialog(id) {
@@ -821,12 +692,12 @@ function renderProductDialog(id) {
       </div>
       <div class="estimate-row">
         <span>${t("estimate")}</span>
-        <strong class="price">${formatPrice(product.price)}</strong>
+        <strong class="price">${formatPrice(getUnitPrice(product))}</strong>
       </div>
       <ul class="detail-list">
         ${copy.details.map((detail) => `<li>${detail}</li>`).join("")}
       </ul>
-      <button class="primary-button" type="button" data-add="${product.id}">${t("addToBag")}</button>
+      <a class="primary-button" href="${instagramProfileUrl}" target="_blank" rel="noreferrer" data-dm="${product.id}">DM ${copy.dmKeyword || (product.id === "p2" ? "木" : "绿")}</a>
     </div>
   `;
 }
@@ -841,18 +712,12 @@ document.addEventListener("click", (event) => {
   const target = event.target;
   if (!(target instanceof HTMLElement)) return;
 
-  const addId = target.closest("[data-add]")?.getAttribute("data-add");
+  const dmId = target.closest("[data-dm]")?.getAttribute("data-dm");
   const viewId = target.closest("[data-view]")?.getAttribute("data-view");
-  const increaseId = target.closest("[data-increase]")?.getAttribute("data-increase");
-  const decreaseId = target.closest("[data-decrease]")?.getAttribute("data-decrease");
-  const removeId = target.closest("[data-remove]")?.getAttribute("data-remove");
   const language = target.closest("[data-language]")?.getAttribute("data-language");
 
-  if (addId) addToCart(addId);
+  if (dmId) copyProductInquiry(dmId);
   if (viewId) openProduct(viewId);
-  if (increaseId) updateQuantity(increaseId, (state.cart[increaseId] || 0) + 1);
-  if (decreaseId) updateQuantity(decreaseId, (state.cart[decreaseId] || 0) - 1);
-  if (removeId) updateQuantity(removeId, 0);
 
   if (language && language !== state.language) {
     state.language = language;
@@ -860,8 +725,6 @@ document.addEventListener("click", (event) => {
     applyLanguage();
   }
 
-  if (target.closest("[data-cart-open]")) openCart();
-  if (target.closest("[data-cart-close]")) closeCart();
   if (target.closest("[data-dialog-close]")) dialog.close();
   if (target.closest("[data-search-focus]")) document.querySelector("#shop")?.scrollIntoView({ behavior: "smooth" });
 
@@ -885,13 +748,6 @@ document.addEventListener("click", (event) => {
     renderProducts();
   }
 
-  if (target.closest("[data-checkout]")) {
-    const canContinue = submitCartInquiry();
-    if (!canContinue) event.preventDefault();
-  }
-
-  if (target.closest("[data-export-leads]")) exportLeads();
-  if (target.closest("[data-save-lead]")) submitLeadForm();
 });
 
 searchInput?.addEventListener("input", (event) => {
