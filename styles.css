@@ -1735,3 +1735,66 @@ p {
     justify-self: start;
   }
 }
+
+.analytics-consent {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 80;
+  width: min(430px, calc(100vw - 36px));
+  padding: 16px;
+  border: 1px solid #2a2a24;
+  background: #fff;
+  box-shadow: 0 10px 34px rgb(0 0 0 / 14%);
+}
+
+.analytics-consent p {
+  margin: 0 0 12px;
+  color: #30302b;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.analytics-consent div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.analytics-consent a,
+.analytics-consent button {
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid #2a2a24;
+  border-radius: 0;
+  color: #2a2a24;
+  background: #fff;
+  font: inherit;
+  font-size: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.analytics-consent a {
+  margin-right: auto;
+  border-color: transparent;
+  padding-left: 0;
+}
+
+.analytics-consent [data-analytics-accept] {
+  color: #fff;
+  background: #2a2a24;
+}
+
+@media (max-width: 420px) {
+  .analytics-consent {
+    right: 12px;
+    bottom: 12px;
+    width: calc(100vw - 24px);
+  }
+
+  .analytics-consent div {
+    flex-wrap: wrap;
+  }
+}
