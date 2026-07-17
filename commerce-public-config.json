@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "mode": "preview",
   "publicPaymentEnabled": false,
   "sandboxReady": false,
@@ -14,6 +14,6 @@
     }
   },
   "ga4": {
-    "measurementId": ""
+    "measurementId": "G-MFTHN8SWFQ"
   }
 }
