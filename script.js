@@ -50,6 +50,10 @@ const productEnglish = {
   },
 };
 
+products.forEach((product) => {
+  product.englishName = productEnglish[product.id]?.name || product.name;
+});
+
 const translations = {
   zh: {
     pageTitle: "有无｜水晶串与木珠串",
@@ -64,8 +68,8 @@ const translations = {
     navCare: "新品",
     navService: "客服",
     searchAria: "搜索商品",
-    cartOpen: "前往咨询",
-    bagIcon: "私信",
+    cartOpen: "打开测试购物袋",
+    bagIcon: "购物袋",
     heroSliderLabel: "首页图片轮播",
     heroDotsLabel: "切换首页图片",
     introAlt: "宁静绿色户外柔光氛围图：水晶串与木珠串",
@@ -216,8 +220,8 @@ const translations = {
     navCare: "New",
     navService: "Service",
     searchAria: "Search products",
-    cartOpen: "Message VOID & FORM",
-    bagIcon: "DM",
+    cartOpen: "Open preview bag",
+    bagIcon: "Bag",
     heroSliderLabel: "Homepage image carousel",
     heroDotsLabel: "Switch homepage image",
     introAlt: "Serene green outdoor lifestyle image of crystal and wood bead bracelets",
@@ -374,7 +378,7 @@ const state = {
 };
 
 const trackingKey = "curioTrafficSource";
-const trackingFields = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "source"];
+const trackingFields = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "source", "vf_audience", "vf_market"];
 
 const grid = document.querySelector("[data-product-grid]");
 const emptyState = document.querySelector("[data-empty]");
@@ -478,7 +482,7 @@ function renderFitResult(fit = "daily") {
       <span>${t("estimate")}</span>
       <strong class="price">${formatPrice(getUnitPrice(product))}</strong>
     </div>
-    <a class="primary-button" href="${instagramProfileUrl}" target="_blank" rel="noreferrer" data-dm="${product.id}">DM ${copy.dmKeyword || (product.id === "p2" ? "木" : "绿")}</a>
+    <button class="primary-button" type="button" data-add-to-cart="${product.id}">${t("addToBag")}</button>
   `;
 }
 
@@ -491,6 +495,9 @@ function submitLeadForm() {
     ? `VOID & FORM inquiry\nPiece: ${data.use}\nCountry / region: ${data.country}\nWrist size: ${data.wrist || "Not specified"}\nComfortable price: ${data.budget || "Not specified"}\nPurchase timing: ${data.timing || "Not specified"}\nContact: ${data.contact || "Instagram DM"}`
     : `有无咨询\n款式：${data.use}\n国家/地区：${data.country}\n手围：${data.wrist || "未填写"}\n预算：${data.budget || "未填写"}\n购买时间：${data.timing || "未填写"}\n联系方式：${data.contact || "Instagram 私信"}`;
   copyReservationText(inquiryText);
+  window.VoidFormCommerce?.track("inquiry_start", {
+    productId: data.use === "WOOD" ? "p2" : "p1",
+  });
   leadForm.reset();
   showToast(t("leadSaved"));
   window.open(instagramProfileUrl, "_blank", "noopener,noreferrer");
@@ -508,6 +515,7 @@ function copyProductInquiry(id) {
   const product = products.find((item) => item.id === id);
   if (!product) return;
   copyReservationText(productInquiryText(product));
+  window.VoidFormCommerce?.track("outbound_instagram", { productId: id });
   showToast(t("leadSaved"));
 }
 
@@ -555,6 +563,7 @@ function applyLanguage() {
   applyStaticTranslations();
   renderProducts();
   renderFitResult(document.querySelector("[data-fit].is-active")?.getAttribute("data-fit") || "daily");
+  window.VoidFormCommerce?.renderCart(state.language);
   if (dialog.open && activeProductId) renderProductDialog(activeProductId);
 }
 
@@ -626,7 +635,7 @@ function renderProducts() {
                 <strong class="price">${formatPrice(getUnitPrice(product))}</strong>
               </div>
               <div class="card-actions">
-                <a class="primary-button" href="${instagramProfileUrl}" target="_blank" rel="noreferrer" data-dm="${product.id}">DM ${copy.dmKeyword || (product.id === "p2" ? "木" : "绿")}</a>
+                <button class="primary-button" type="button" data-add-to-cart="${product.id}">${t("addToBag")}</button>
                 <button class="quick-button" type="button" data-view="${product.id}" aria-label="${t("viewDetails", { name: copy.name })}">${t("view")}</button>
               </div>
             </div>
@@ -697,7 +706,7 @@ function renderProductDialog(id) {
       <ul class="detail-list">
         ${copy.details.map((detail) => `<li>${detail}</li>`).join("")}
       </ul>
-      <a class="primary-button" href="${instagramProfileUrl}" target="_blank" rel="noreferrer" data-dm="${product.id}">DM ${copy.dmKeyword || (product.id === "p2" ? "木" : "绿")}</a>
+      <button class="primary-button" type="button" data-add-to-cart="${product.id}">${t("addToBag")}</button>
     </div>
   `;
 }
@@ -706,6 +715,14 @@ function openProduct(id) {
   activeProductId = id;
   renderProductDialog(id);
   dialog.showModal();
+  const product = products.find((item) => item.id === id);
+  if (product) {
+    window.VoidFormCommerce?.track("view_item", {
+      productId: id,
+      value: getUnitPrice(product),
+      currency: state.language === "en" ? "USD" : "CNY",
+    });
+  }
 }
 
 document.addEventListener("click", (event) => {
@@ -713,11 +730,28 @@ document.addEventListener("click", (event) => {
   if (!(target instanceof HTMLElement)) return;
 
   const dmId = target.closest("[data-dm]")?.getAttribute("data-dm");
+  const addToCartId = target.closest("[data-add-to-cart]")?.getAttribute("data-add-to-cart");
+  const removeCartId = target.closest("[data-cart-remove]")?.getAttribute("data-cart-remove");
   const viewId = target.closest("[data-view]")?.getAttribute("data-view");
   const language = target.closest("[data-language]")?.getAttribute("data-language");
 
   if (dmId) copyProductInquiry(dmId);
+  if (addToCartId) {
+    const product = products.find((item) => item.id === addToCartId);
+    if (product) {
+      window.VoidFormCommerce?.addToCart(product, state.language);
+      showToast(t("addedToBag", { name: getProductCopy(product).name }));
+    }
+  }
+  if (removeCartId) window.VoidFormCommerce?.removeFromCart(removeCartId);
   if (viewId) openProduct(viewId);
+  if (target.closest("[data-cart-open]")) window.VoidFormCommerce?.openCart(state.language);
+  if (target.closest("[data-cart-close]")) document.querySelector("[data-cart-dialog]")?.close();
+  if (target.closest("[data-cart-checkout]")) {
+    window.VoidFormCommerce?.checkout(state.language).then((result) => {
+      if (!result?.ok) showToast(result?.message || t("checkoutEmpty"));
+    });
+  }
 
   if (language && language !== state.language) {
     state.language = language;

@@ -34,9 +34,10 @@
         <button class="icon-button" type="button" data-search-focus aria-label="搜索商品" data-i18n-aria-label="searchAria">
           <span aria-hidden="true">⌕</span>
         </button>
-        <a class="cart-button" href="#inquiry" aria-label="Message VOID &amp; FORM" data-i18n-aria-label="cartOpen">
-          <span aria-hidden="true" data-i18n="bagIcon">DM</span>
-        </a>
+        <button class="cart-button" type="button" data-cart-open aria-label="Open preview bag" data-i18n-aria-label="cartOpen">
+          <span aria-hidden="true" data-i18n="bagIcon">Bag</span>
+          <small data-cart-count hidden>0</small>
+        </button>
       </div>
     </header>
 
@@ -153,6 +154,16 @@
       <div class="dialog-body" data-dialog-body></div>
     </dialog>
 
+    <dialog class="cart-dialog" data-cart-dialog>
+      <div class="cart-dialog-head">
+        <h2 data-i18n="cartTitle">Preview bag</h2>
+        <button class="icon-button dialog-close" type="button" data-cart-close aria-label="Close preview bag">×</button>
+      </div>
+      <div class="cart-items" data-cart-items></div>
+      <p class="cart-note" data-cart-note></p>
+      <button class="primary-button" type="button" data-cart-checkout>Test checkout</button>
+    </dialog>
+
     <div class="toast" data-toast role="status" aria-live="polite"></div>
 
     <nav class="mobile-tabbar" aria-label="底部导航" data-i18n-aria-label="bottomNavLabel">
@@ -162,6 +173,7 @@
       <a href="#inquiry"><span>☏</span><strong data-i18n="bottomService">客服</strong></a>
     </nav>
 
-    <script src="script.js?v=foreign-3"></script>
+    <script src="commerce.js?v=commerce-1"></script>
+    <script src="script.js?v=commerce-1"></script>
   </body>
 </html>
