@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "mode": "preview",
+  "publicPaymentEnabled": false,
+  "sandboxReady": false,
+  "shopify": {
+    "apiVersion": "2026-04",
+    "storefrontEnabled": false,
+    "shopDomain": "",
+    "storefrontAccessToken": "",
+    "variants": {
+      "p1": "",
+      "p2": ""
+    }
+  },
+  "ga4": {
+    "measurementId": ""
+  }
+}

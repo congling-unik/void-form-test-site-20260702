@@ -1,5 +1,5 @@
 (function () {
-  const configUrl = "commerce-ops/config.json";
+  const configUrl = "commerce-public-config.json";
   const cartKey = "voidFormPreviewCart";
   const trackingKey = "curioTrafficSource";
   const eventQueueKey = "voidFormAnalyticsQueue";
