@@ -4,6 +4,7 @@
   const trackingKey = "curioTrafficSource";
   const eventQueueKey = "voidFormAnalyticsQueue";
   const sessionKey = "voidFormSessionId";
+  const analyticsConsentKey = "voidFormAnalyticsConsent";
   let runtimeConfig = null;
 
   function safeJson(value, fallback) {
@@ -34,8 +35,15 @@
 
   function installGa4(measurementId) {
     if (!/^G-[A-Z0-9]+$/i.test(String(measurementId || ""))) return;
+    if (localStorage.getItem(analyticsConsentKey) !== "granted") return;
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag("consent", "default", {
+      analytics_storage: "granted",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    });
     window.gtag("js", new Date());
     window.gtag("config", measurementId, { send_page_view: true });
     if (!document.querySelector(`script[data-ga4="${measurementId}"]`)) {
@@ -47,12 +55,44 @@
     }
   }
 
+  function showAnalyticsConsent(measurementId) {
+    const choice = localStorage.getItem(analyticsConsentKey);
+    if (choice === "granted") {
+      installGa4(measurementId);
+      return;
+    }
+    if (choice === "denied" || document.querySelector("[data-analytics-consent]")) return;
+
+    const banner = document.createElement("aside");
+    banner.className = "analytics-consent";
+    banner.dataset.analyticsConsent = "";
+    banner.setAttribute("aria-label", "Analytics choice");
+    banner.innerHTML = `
+      <p>We use anonymous analytics to understand visits and improve this preview. No advertising cookies.</p>
+      <div>
+        <a href="privacy.html">Privacy</a>
+        <button type="button" data-analytics-decline>Decline</button>
+        <button type="button" data-analytics-accept>Accept</button>
+      </div>
+    `;
+    banner.querySelector("[data-analytics-accept]").addEventListener("click", () => {
+      localStorage.setItem(analyticsConsentKey, "granted");
+      banner.remove();
+      installGa4(measurementId);
+    });
+    banner.querySelector("[data-analytics-decline]").addEventListener("click", () => {
+      localStorage.setItem(analyticsConsentKey, "denied");
+      banner.remove();
+    });
+    document.body.appendChild(banner);
+  }
+
   function loadConfig() {
     return fetch(configUrl, { cache: "no-store" })
       .then((response) => (response.ok ? response.json() : null))
       .then((config) => {
         runtimeConfig = config;
-        if (config?.ga4?.measurementId) installGa4(config.ga4.measurementId);
+        if (config?.ga4?.measurementId) showAnalyticsConsent(config.ga4.measurementId);
         return config;
       })
       .catch(() => null);
@@ -71,9 +111,7 @@
     const queue = safeJson(localStorage.getItem(eventQueueKey) || "[]", []);
     queue.push(event);
     localStorage.setItem(eventQueueKey, JSON.stringify(queue.slice(-200)));
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: eventName, ...event });
-    if (typeof window.gtag === "function") {
+    if (localStorage.getItem(analyticsConsentKey) === "granted" && typeof window.gtag === "function") {
       window.gtag("event", eventName, {
         currency: event.currency || "USD",
         value: event.value ?? undefined,
