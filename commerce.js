@@ -1,6 +1,7 @@
 (function () {
   const configUrl = "commerce-public-config.json";
-  const cartKey = "voidFormPreviewCart";
+  const cartKey = "voidFormShoppingBag";
+  const checkoutStateKey = "voidFormCheckoutState";
   const trackingKey = "curioTrafficSource";
   const eventQueueKey = "voidFormAnalyticsQueue";
   const sessionKey = "voidFormSessionId";
@@ -9,6 +10,10 @@
 
   function safeJson(value, fallback) {
     try { return JSON.parse(value); } catch { return fallback; }
+  }
+
+  function hasNumericPrice(value) {
+    return value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value));
   }
 
   function sessionId() {
@@ -68,7 +73,7 @@
     banner.dataset.analyticsConsent = "";
     banner.setAttribute("aria-label", "Analytics choice");
     banner.innerHTML = `
-      <p>We use anonymous analytics to understand visits and improve this preview. No advertising cookies.</p>
+      <p>We use anonymous analytics to understand visits and improve the storefront. No advertising cookies.</p>
       <div>
         <a href="privacy.html">Privacy</a>
         <button type="button" data-analytics-decline>Decline</button>
@@ -162,11 +167,11 @@
       image: product.image,
     });
     writeCart(items);
+    const price = language === "en" ? product.priceUsd : product.price;
     track("add_to_cart", {
       productId: product.id,
       quantity: 1,
-      value: language === "en" ? product.priceUsd : product.price,
-      currency: language === "en" ? "USD" : "CNY",
+      ...(hasNumericPrice(price) ? { value: Number(price), currency: language === "en" ? "USD" : "CNY" } : {}),
     });
     return items;
   }
@@ -178,18 +183,20 @@
 
   const copy = {
     en: {
-      empty: "Your preview bag is empty.",
-      note: "No live payment. Shopify sandbox remains locked until products, samples and fulfillment are verified.",
+      empty: "Your shopping bag is empty.",
+      note: "Items are saved in this browser. Checkout is temporarily unavailable.",
       remove: "Remove",
-      checkout: "Test checkout",
-      locked: "Checkout test is not configured yet. Your selection is saved on this device.",
+      checkout: "Checkout",
+      locked: "Checkout is temporarily unavailable. Your selection remains saved in this browser.",
+      error: "Checkout could not be opened. Please try again later.",
     },
     zh: {
-      empty: "测试购物袋还是空的。",
-      note: "目前不收真实货款。真实商品、样品和履约通过前，Shopify 沙盒保持锁定。",
+      empty: "购物袋还是空的。",
+      note: "商品已保存在当前浏览器中。结账暂时不可用。",
       remove: "移除",
-      checkout: "测试结账",
-      locked: "结账沙盒尚未配置，你的选择已保存在本机。",
+      checkout: "结账",
+      locked: "结账暂时不可用。你的选择仍保存在当前浏览器中。",
+      error: "暂时无法打开结账，请稍后再试。",
     },
   };
 
@@ -203,7 +210,7 @@
       ? items.map((item) => `
           <article class="cart-line">
             <img src="${item.image}" alt="">
-            <div><strong>${item.name}</strong><span>${item.currency} ${item.price} · ×${item.quantity}</span></div>
+            <div><strong>${item.name}</strong><span>${hasNumericPrice(item.price) ? `${item.currency} ${item.price} · ` : ""}×${item.quantity}</span></div>
             <button type="button" data-cart-remove="${item.productId}">${copy[language].remove}</button>
           </article>
         `).join("")
@@ -220,14 +227,22 @@
     document.querySelector("[data-cart-dialog]")?.showModal();
   }
 
-  async function createShopifyCart(items) {
-    const config = runtimeConfig || await loadConfig();
+  function checkoutAvailability(config, items) {
     const shopify = config?.shopify || {};
-    const ready = Boolean(
-      shopify.storefrontEnabled && shopify.shopDomain && shopify.storefrontAccessToken &&
-      config.sandboxReady && items.every((item) => shopify.variants?.[item.productId])
-    );
-    if (!ready) return null;
+    if (!config?.publicPaymentEnabled) return { ready: false, code: "public-payment-disabled" };
+    if (!config?.sandboxReady) return { ready: false, code: "checkout-not-ready" };
+    if (!shopify.storefrontEnabled || !shopify.shopDomain || !shopify.storefrontAccessToken) {
+      return { ready: false, code: "storefront-not-configured" };
+    }
+    if (!items.every((item) => shopify.variants?.[item.productId])) {
+      return { ready: false, code: "product-not-configured" };
+    }
+    return { ready: true, code: "ready" };
+  }
+
+  async function createShopifyCart(items, config) {
+    const shopify = config?.shopify || {};
+    if (!checkoutAvailability(config, items).ready) return null;
     const source = attribution();
     const query = `mutation CreateCart($input: CartInput!) {
       cartCreate(input: $input) { cart { id checkoutUrl } userErrors { field message } }
@@ -265,19 +280,28 @@
 
   async function checkout(language = "en") {
     const items = readCart();
-    const value = items.reduce((sum, item) => sum + Number(item.price || 0) * Number(item.quantity || 0), 0);
+    if (!items.length) return { ok: false, message: copy[language].empty, code: "empty-bag" };
+    const pricedItems = items.filter((item) => hasNumericPrice(item.price));
+    const value = pricedItems.reduce((sum, item) => sum + Number(item.price) * Number(item.quantity || 0), 0);
     track("begin_checkout", {
       quantity: items.reduce((sum, item) => sum + Number(item.quantity || 0), 0),
-      value,
-      currency: items[0]?.currency || (language === "en" ? "USD" : "CNY"),
+      ...(pricedItems.length ? { value, currency: pricedItems[0]?.currency || (language === "en" ? "USD" : "CNY") } : {}),
     });
-    const cart = await createShopifyCart(items).catch(() => null);
-    if (!cart?.checkoutUrl) return { ok: false, message: copy[language].locked };
+    const config = runtimeConfig || await loadConfig();
+    const availability = checkoutAvailability(config, items);
+    localStorage.setItem(checkoutStateKey, JSON.stringify({
+      code: availability.code,
+      checkedAt: new Date().toISOString(),
+      queueId: attribution().queueId || "direct",
+    }));
+    if (!availability.ready) return { ok: false, message: copy[language].locked, code: availability.code };
+    const cart = await createShopifyCart(items, config).catch(() => null);
+    if (!cart?.checkoutUrl) return { ok: false, message: copy[language].error, code: "storefront-error" };
     window.location.assign(cart.checkoutUrl);
-    return { ok: true };
+    return { ok: true, code: "checkout-opened" };
   }
 
   loadConfig().then(() => track("session_start"));
   window.addEventListener("DOMContentLoaded", updateCartCount);
-  window.VoidFormCommerce = { addToCart, checkout, openCart, readCart, removeFromCart, renderCart, track, updateCartCount };
+  window.VoidFormCommerce = { addToCart, checkout, checkoutAvailability, openCart, readCart, removeFromCart, renderCart, track, updateCartCount };
 })();

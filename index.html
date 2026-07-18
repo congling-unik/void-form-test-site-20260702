@@ -34,7 +34,7 @@
         <button class="icon-button" type="button" data-search-focus aria-label="搜索商品" data-i18n-aria-label="searchAria">
           <span aria-hidden="true">⌕</span>
         </button>
-        <button class="cart-button" type="button" data-cart-open aria-label="Open preview bag" data-i18n-aria-label="cartOpen">
+        <button class="cart-button" type="button" data-cart-open aria-label="Open shopping bag" data-i18n-aria-label="cartOpen">
           <span aria-hidden="true" data-i18n="bagIcon">Bag</span>
           <small data-cart-count hidden>0</small>
         </button>
@@ -44,8 +44,8 @@
     <main>
       <section class="intro-hero" id="home" aria-label="Homepage image carousel" data-i18n-aria-label="heroSliderLabel">
         <div class="intro-slider" aria-label="Homepage image carousel" data-i18n-aria-label="heroSliderLabel">
-          <img class="intro-hero-image is-active" src="assets/product-crystal-test-02.jpg" alt="A wrist wearing a pale green bead bracelet in soft outdoor light" data-hero-slide data-i18n-alt="introAltOne" />
-          <img class="intro-hero-image" src="assets/product-wood-test-02.jpg" alt="A wrist wearing a warm wood bead bracelet in a quiet mossy garden" data-hero-slide data-i18n-alt="introAltTwo" />
+          <img class="intro-hero-image is-active" src="assets/product-pale-green-02.jpg" alt="A wrist wearing a pale green bead bracelet in soft outdoor light" data-hero-slide data-i18n-alt="introAltOne" />
+          <img class="intro-hero-image" src="assets/product-warm-wood-02.jpg" alt="A wrist wearing a warm wood bead bracelet in a quiet mossy garden" data-hero-slide data-i18n-alt="introAltTwo" />
         </div>
         <div class="hero-dots" aria-label="切换首页图片" data-i18n-aria-label="heroDotsLabel">
           <button class="is-active" type="button" data-hero-dot="0" aria-label="第 1 张首页图片"></button>
@@ -55,26 +55,26 @@
 
       <section class="shop-shell" id="shop" aria-labelledby="shop-title">
         <aside class="shop-rail" aria-label="店铺信息" data-i18n-aria-label="shopInfo">
-          <p class="eyebrow" data-i18n="launch">FIRST DROP</p>
+          <p class="eyebrow" data-i18n="launch">FIRST COLLECTION</p>
           <h1 id="shop-title" data-i18n="heroTitle">All Products</h1>
 
           <dl class="trust-list">
             <div>
-              <dt data-i18n="pricePoint">Under US$25</dt>
-              <dd data-i18n="inStock">Expected launch price</dd>
+              <dt data-i18n="pricePoint">FIRST COLLECTION</dt>
+              <dd data-i18n="inStock">Checkout unavailable</dd>
             </div>
             <div>
               <dt data-i18n="sevenDays">Wrist size</dt>
-              <dd data-i18n="easyReturns">Fit by chat</dd>
+              <dd data-i18n="easyReturns">Ask customer care</dd>
             </div>
             <div>
               <dt data-i18n="servicePoint">Support</dt>
-              <dd data-i18n="sizeAdvice">Instagram DM</dd>
+              <dd data-i18n="sizeAdvice">Instagram</dd>
             </div>
           </dl>
         </aside>
 
-        <section class="commerce-panel" aria-label="测试款选购" data-i18n-aria-label="commerceLabel">
+        <section class="commerce-panel" aria-label="商品选购" data-i18n-aria-label="commerceLabel">
           <div class="category-tabs" role="tablist" aria-label="拍品分类" data-i18n-aria-label="categoryLabel">
             <button class="tab is-active" type="button" data-category="all" data-i18n="categoryAll">All</button>
             <button class="tab" type="button" data-category="crystal" data-i18n="categoryCrystal">Pale green</button>
@@ -87,15 +87,15 @@
       </section>
 
       <section class="service-strip" id="service" aria-label="服务承诺" data-i18n-aria-label="serviceLabel">
-        <span data-i18n="service1">Pale green preview</span>
-        <span data-i18n="service2">Warm wood preview</span>
-        <span data-i18n="service3">Fit confirmed before checkout</span>
+        <span data-i18n="service1">Pale Green Bead Bracelet</span>
+        <span data-i18n="service2">Warm Wood Bead Bracelet</span>
+        <span data-i18n="service3">Customer care</span>
       </section>
 
       <section class="lead-section" id="inquiry" aria-labelledby="lead-title">
         <div>
           <p class="eyebrow" data-i18n="leadLabel">SERVICE</p>
-          <h2 id="lead-title" data-i18n="leadTitle">Join the First Drop</h2>
+          <h2 id="lead-title" data-i18n="leadTitle">Customer Care</h2>
         </div>
         <div class="lead-panel">
           <form class="lead-form" data-lead-form>
@@ -107,8 +107,8 @@
               </select>
             </label>
             <label>
-              <span data-i18n="leadBudget">Comfortable price</span>
-              <input name="budget" type="text" placeholder="e.g. US$24" data-i18n-placeholder="leadBudgetPlaceholder" />
+              <span data-i18n="leadBudget">What can we help with?</span>
+              <input name="budget" type="text" placeholder="Product, fit, or care question" data-i18n-placeholder="leadBudgetPlaceholder" />
             </label>
             <label>
               <span data-i18n="leadCountry">Country / region</span>
@@ -119,11 +119,11 @@
               <input name="wrist" type="text" placeholder="cm or in" data-i18n-placeholder="leadWristPlaceholder" />
             </label>
             <label>
-              <span data-i18n="leadTiming">Purchase timing</span>
+              <span data-i18n="leadTiming">Question type</span>
               <select name="timing">
-                <option value="ready" data-i18n="leadTimingReady">Ready when available</option>
-                <option value="month" data-i18n="leadTimingMonth">Within a month</option>
-                <option value="compare" data-i18n="leadTimingCompare">Just comparing</option>
+                <option value="product" data-i18n="leadTimingReady">Product information</option>
+                <option value="care" data-i18n="leadTimingMonth">Fit and care</option>
+                <option value="order" data-i18n="leadTimingCompare">Order and after-sales</option>
               </select>
             </label>
             <label>
@@ -139,7 +139,7 @@
     <footer class="site-footer" aria-label="站点信息">
       <div>
         <strong data-i18n="footerBrand">VOID &amp; FORM</strong>
-        <p data-i18n="footerNote">Preview release. Material, fit, shipping, and returns are confirmed before checkout opens.</p>
+        <p data-i18n="footerNote">Quiet bead bracelets for everyday wear. Checkout is temporarily unavailable.</p>
       </div>
       <nav aria-label="政策页面" data-i18n-aria-label="footerPolicyNav">
         <a href="privacy.html" data-i18n="footerPrivacy">隐私</a>
@@ -156,12 +156,12 @@
 
     <dialog class="cart-dialog" data-cart-dialog>
       <div class="cart-dialog-head">
-        <h2 data-i18n="cartTitle">Preview bag</h2>
-        <button class="icon-button dialog-close" type="button" data-cart-close aria-label="Close preview bag">×</button>
+        <h2 data-i18n="cartTitle">Shopping bag</h2>
+        <button class="icon-button dialog-close" type="button" data-cart-close aria-label="Close shopping bag">×</button>
       </div>
       <div class="cart-items" data-cart-items></div>
       <p class="cart-note" data-cart-note></p>
-      <button class="primary-button" type="button" data-cart-checkout>Test checkout</button>
+      <button class="primary-button" type="button" data-cart-checkout>Checkout</button>
     </dialog>
 
     <div class="toast" data-toast role="status" aria-live="polite"></div>
@@ -169,11 +169,11 @@
     <nav class="mobile-tabbar" aria-label="底部导航" data-i18n-aria-label="bottomNavLabel">
       <a href="#home"><span>⌂</span><strong data-i18n="bottomHome">首页</strong></a>
       <a href="#shop"><span>☰</span><strong data-i18n="bottomCategory">分类</strong></a>
-      <a href="#inquiry"><span>▱</span><strong data-i18n="bottomCart">First drop</strong></a>
+      <a href="#shop"><span>▱</span><strong data-i18n="bottomCart">Bag</strong></a>
       <a href="#inquiry"><span>☏</span><strong data-i18n="bottomService">客服</strong></a>
     </nav>
 
-    <script src="commerce.js?v=commerce-3"></script>
-    <script src="script.js?v=commerce-2"></script>
+    <script src="commerce.js?v=customer-1"></script>
+    <script src="script.js?v=customer-1"></script>
   </body>
 </html>
