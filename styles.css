@@ -1720,6 +1720,88 @@ p {
   margin: 0 20px 20px;
 }
 
+.order-request-dialog {
+  width: min(92vw, 560px);
+  max-height: min(88vh, 780px);
+  padding: 0;
+  border: 1px solid #24241f;
+  border-radius: 0;
+  background: #fff;
+}
+
+.order-request-dialog::backdrop {
+  background: rgb(0 0 0 / 42%);
+}
+
+.order-request-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #d8d8d0;
+}
+
+.order-request-head p {
+  margin: 0;
+}
+
+.order-request-body,
+.order-request-confirmation {
+  display: grid;
+  gap: 18px;
+  padding: 24px 20px;
+}
+
+.order-request-body h2,
+.order-request-confirmation h2 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.order-request-body > p,
+.order-request-confirmation > p {
+  margin: 0;
+  color: #5f5f57;
+  line-height: 1.55;
+}
+
+.order-request-items {
+  display: grid;
+  gap: 7px;
+  padding: 14px 0;
+  border-block: 1px solid #d8d8d0;
+}
+
+.order-request-body form {
+  display: grid;
+  gap: 14px;
+}
+
+.order-request-body label {
+  display: grid;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.order-request-body input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #24241f;
+  border-radius: 0;
+  background: #fff;
+  font: inherit;
+}
+
+.order-request-confirmation .primary-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
 @media (max-width: 560px) {
   .cart-line {
     grid-template-columns: 58px minmax(0, 1fr);

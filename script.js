@@ -92,7 +92,7 @@ const translations = {
     heroTitle: "全部商品",
     heroBody: "",
     heroAlt: "浅绿珠串与暖木珠串",
-    inStock: "结账暂未开放",
+    inStock: "可提交购买申请",
     sevenDays: "手围",
     easyReturns: "可备注",
     sizeAdvice: "咨询确认",
@@ -160,23 +160,21 @@ const translations = {
     leadTimingReady: "商品信息",
     leadTimingMonth: "佩戴与护理",
     leadTimingCompare: "订单与售后",
-    leadContact: "微信/邮箱",
-    leadContactPlaceholder: "留下联系方式",
     leadSubmit: "复制咨询并打开 Instagram",
     leadSaved: "咨询内容已复制，正在打开 Instagram。",
     freeShippingLeft: "再加 {amount}",
     freeShippingReady: "已达到条件",
     bonusLeft: "再加 {amount} 解锁礼盒升级",
     bonusReady: "已解锁礼盒升级",
-    reservationStatus: "结账暂时不可用。",
+    reservationStatus: "可提交购买申请",
     dmKeyword: "商品：{name}",
     stickyText: "水晶串 · 木珠串",
     stickyCta: "查看拍品",
     cartTitle: "购物袋",
     cartClose: "关闭购物车",
     subtotal: "小计",
-    cartNote: "结账暂时不可用。商品会保存在这台设备的购物袋中。",
-    checkout: "结账",
+    cartNote: "商品会保存在这台设备的购物袋中，可提交不付款的购买申请。",
+    checkout: "提交购买申请",
     dialogClose: "关闭详情",
     addToBag: "加入购物袋",
     view: "查看详情",
@@ -188,9 +186,9 @@ const translations = {
     remove: "移除",
     addedToBag: "{name} 已加入购物袋",
     checkoutEmpty: "请先加入商品。",
-    checkoutSuccess: "正在前往结账。",
+    checkoutSuccess: "购买申请已记录。",
     lot: "商品",
-    estimate: "购买状态",
+    estimate: "申请状态",
     specialistPick: "FIRST COLLECTION",
     bottomNavLabel: "底部导航",
     bottomHome: "首页",
@@ -198,7 +196,7 @@ const translations = {
     bottomCart: "购物袋",
     bottomService: "客服",
     footerBrand: "有无 Void & Form",
-    footerNote: "安静、自然、适合日常佩戴的珠串。结账暂时不可用。",
+    footerNote: "安静、自然、适合日常佩戴的珠串。无需付款即可提交购买申请。",
     footerPolicyNav: "政策页面",
     footerPrivacy: "隐私",
     footerShipping: "物流",
@@ -244,7 +242,7 @@ const translations = {
     heroTitle: "All Products",
     heroBody: "",
     heroAlt: "Pale green and warm brown bead bracelets",
-    inStock: "Checkout unavailable",
+    inStock: "Order requests available",
     sevenDays: "Wrist size",
     easyReturns: "Notes accepted",
     sizeAdvice: "Confirm by chat",
@@ -312,23 +310,21 @@ const translations = {
     leadTimingReady: "Product information",
     leadTimingMonth: "Fit and care",
     leadTimingCompare: "Order and after-sales",
-    leadContact: "Email or Instagram handle",
-    leadContactPlaceholder: "How can we reach you?",
     leadSubmit: "Copy inquiry & open Instagram",
     leadSaved: "Inquiry copied. Instagram is opening now.",
     freeShippingLeft: "Add {amount}",
     freeShippingReady: "Threshold reached",
     bonusLeft: "Add {amount} to unlock gift-box upgrade",
     bonusReady: "Gift-box upgrade unlocked",
-    reservationStatus: "Checkout is temporarily unavailable.",
+    reservationStatus: "Order request available",
     dmKeyword: "Product: {name}",
     stickyText: "Pale green · warm brown bead bracelets",
     stickyCta: "View lots",
     cartTitle: "Shopping bag",
     cartClose: "Close shopping bag",
     subtotal: "Subtotal",
-    cartNote: "Checkout is temporarily unavailable. Your selection remains saved in this browser.",
-    checkout: "Checkout",
+    cartNote: "Your selection remains saved in this browser. You can submit an order request without payment.",
+    checkout: "Request this bracelet",
     dialogClose: "Close product details",
     addToBag: "Add to bag",
     view: "Details",
@@ -339,10 +335,10 @@ const translations = {
     increase: "Increase {name}",
     remove: "Remove",
     addedToBag: "{name} added to your shopping bag",
-    checkoutEmpty: "Add a product before checkout.",
-    checkoutSuccess: "Opening checkout.",
+    checkoutEmpty: "Add a product before submitting a request.",
+    checkoutSuccess: "Order request recorded.",
     lot: "Item",
-    estimate: "Purchase status",
+    estimate: "Request status",
     specialistPick: "FIRST COLLECTION",
     bottomNavLabel: "Bottom navigation",
     bottomHome: "Home",
@@ -350,7 +346,7 @@ const translations = {
     bottomCart: "Bag",
     bottomService: "Service",
     footerBrand: "Void & Form",
-    footerNote: "Quiet bead bracelets for everyday wear. Checkout is temporarily unavailable.",
+    footerNote: "Quiet bead bracelets for everyday wear. Submit an order request without payment.",
     footerPolicyNav: "Policy pages",
     footerPrivacy: "Privacy",
     footerShipping: "Shipping",
@@ -491,8 +487,8 @@ function submitLeadForm() {
 
   const data = Object.fromEntries(new FormData(leadForm).entries());
   const inquiryText = state.language === "en"
-    ? `VOID & FORM customer care\nProduct: ${data.use}\nCountry / region: ${data.country}\nWrist size: ${data.wrist || "Not specified"}\nQuestion type: ${data.timing || "Product information"}\nQuestion: ${data.budget || "Not specified"}\nContact: ${data.contact || "Instagram DM"}`
-    : `有无客户服务\n商品：${data.use}\n国家/地区：${data.country}\n手围：${data.wrist || "未填写"}\n问题类型：${data.timing || "商品信息"}\n问题：${data.budget || "未填写"}\n联系方式：${data.contact || "Instagram 私信"}`;
+    ? `VOID & FORM customer care\nProduct: ${data.use}\nCountry / region: ${data.country}\nWrist size: ${data.wrist || "Not specified"}\nQuestion type: ${data.timing || "Product information"}\nQuestion: ${data.budget || "Not specified"}`
+    : `有无客户服务\n商品：${data.use}\n国家/地区：${data.country}\n手围：${data.wrist || "未填写"}\n问题类型：${data.timing || "商品信息"}\n问题：${data.budget || "未填写"}`;
   copyReservationText(inquiryText);
   window.VoidFormCommerce?.track("inquiry_start", {
     productId: data.use === "WOOD" ? "p2" : "p1",
@@ -745,11 +741,7 @@ document.addEventListener("click", (event) => {
   if (viewId) openProduct(viewId);
   if (target.closest("[data-cart-open]")) window.VoidFormCommerce?.openCart(state.language);
   if (target.closest("[data-cart-close]")) document.querySelector("[data-cart-dialog]")?.close();
-  if (target.closest("[data-cart-checkout]")) {
-    window.VoidFormCommerce?.checkout(state.language).then((result) => {
-      if (!result?.ok) showToast(result?.message || t("checkoutEmpty"));
-    });
-  }
+  if (target.closest("[data-order-request-open]")) window.VoidFormCommerce?.openOrderRequest(state.language);
 
   if (language && language !== state.language) {
     state.language = language;

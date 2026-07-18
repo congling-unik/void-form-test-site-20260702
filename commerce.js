@@ -2,6 +2,7 @@
   const configUrl = "commerce-public-config.json";
   const cartKey = "voidFormShoppingBag";
   const checkoutStateKey = "voidFormCheckoutState";
+  const orderRequestsKey = "voidFormOrderRequests";
   const trackingKey = "curioTrafficSource";
   const eventQueueKey = "voidFormAnalyticsQueue";
   const sessionKey = "voidFormSessionId";
@@ -14,6 +15,10 @@
 
   function hasNumericPrice(value) {
     return value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value));
+  }
+
+  function cleanText(value, max = 80) {
+    return String(value || "").replace(/[\u0000-\u001f]/g, "").trim().slice(0, max);
   }
 
   function sessionId() {
@@ -124,6 +129,8 @@
         campaign_id: event.queueId || undefined,
         audience_cohort: event.audienceCohort || undefined,
         target_market: event.targetMarket || undefined,
+        lead_id: event.requestId || undefined,
+        request_country: event.country || undefined,
       });
     }
     if (["127.0.0.1", "localhost"].includes(window.location.hostname)) {
@@ -184,26 +191,59 @@
   const copy = {
     en: {
       empty: "Your shopping bag is empty.",
-      note: "Items are saved in this browser. Checkout is temporarily unavailable.",
+      note: "Items are saved in this browser. Submit an order request without payment.",
       remove: "Remove",
-      checkout: "Checkout",
-      locked: "Checkout is temporarily unavailable. Your selection remains saved in this browser.",
+      checkout: "Request this bracelet",
+      locked: "Payment checkout is not available. You can submit an order request instead.",
       error: "Checkout could not be opened. Please try again later.",
     },
     zh: {
       empty: "购物袋还是空的。",
-      note: "商品已保存在当前浏览器中。结账暂时不可用。",
+      note: "商品已保存在当前浏览器中。无需付款即可提交购买申请。",
       remove: "移除",
-      checkout: "结账",
-      locked: "结账暂时不可用。你的选择仍保存在当前浏览器中。",
+      checkout: "提交购买申请",
+      locked: "付款结账未开放，可先提交购买申请。",
       error: "暂时无法打开结账，请稍后再试。",
+    },
+  };
+
+  const requestCopy = {
+    en: {
+      title: "Request this bracelet",
+      intro: "Send an order request without payment. This is not a paid or confirmed order.",
+      country: "Country / region (optional)",
+      countryPlaceholder: "e.g. United States",
+      wrist: "Wrist size (optional)",
+      wristPlaceholder: "cm or in",
+      submit: "Submit order request",
+      received: "Request received",
+      reference: "Request reference",
+      confirmation: "This request is saved in this browser. No payment, confirmed order, shipping, or fulfillment has been created.",
+      care: "Contact customer care",
+      close: "Close",
+      items: "Requested items",
+    },
+    zh: {
+      title: "提交购买申请",
+      intro: "无需付款即可记录购买申请。这不是已付款或已确认的订单。",
+      country: "国家 / 地区（选填）",
+      countryPlaceholder: "例如：中国",
+      wrist: "手围（选填）",
+      wristPlaceholder: "厘米或英寸",
+      submit: "提交购买申请",
+      received: "申请已记录",
+      reference: "申请编号",
+      confirmation: "申请已保存在当前浏览器中。没有付款、确认订单、发货或履约动作。",
+      care: "联系客户服务",
+      close: "关闭",
+      items: "申请商品",
     },
   };
 
   function renderCart(language = document.documentElement.lang.startsWith("zh") ? "zh" : "en") {
     const root = document.querySelector("[data-cart-items]");
     const note = document.querySelector("[data-cart-note]");
-    const button = document.querySelector("[data-cart-checkout]");
+    const button = document.querySelector("[data-order-request-open]");
     if (!root) return;
     const items = readCart();
     root.innerHTML = items.length
@@ -225,6 +265,118 @@
   function openCart(language) {
     renderCart(language);
     document.querySelector("[data-cart-dialog]")?.showModal();
+  }
+
+  function readOrderRequests() {
+    return safeJson(localStorage.getItem(orderRequestsKey) || "[]", []);
+  }
+
+  function requestSignature(items, source) {
+    const normalizedItems = items
+      .map((item) => ({ productId: cleanText(item.productId, 40), quantity: Math.max(1, Math.min(10, Number(item.quantity || 1))) }))
+      .sort((a, b) => a.productId.localeCompare(b.productId));
+    return JSON.stringify({ items: normalizedItems, queueId: source.queueId || "direct" });
+  }
+
+  function makeRequestId() {
+    const date = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+    const random = globalThis.crypto?.randomUUID?.().replace(/-/g, "").slice(0, 8).toUpperCase()
+      || Math.random().toString(36).slice(2, 10).toUpperCase();
+    return `VF-${date}-${random}`;
+  }
+
+  function renderRequestConfirmation(request, language) {
+    const dialog = document.querySelector("[data-order-request-dialog]");
+    const root = dialog?.querySelector("[data-order-request-content]");
+    const words = requestCopy[language] || requestCopy.en;
+    if (!root) return;
+    root.innerHTML = `
+      <div class="order-request-head">
+        <p class="eyebrow">${words.received}</p>
+        <button type="button" class="icon-button" data-order-request-close aria-label="${words.close}">×</button>
+      </div>
+      <div class="order-request-confirmation">
+        <h2>${words.received}</h2>
+        <p>${words.reference}: <strong data-order-request-id>${request.requestId}</strong></p>
+        <p>${words.confirmation}</p>
+        <a class="primary-button" href="https://www.instagram.com/duck.3428348/" target="_blank" rel="noreferrer">${words.care}</a>
+        <button type="button" data-order-request-close>${words.close}</button>
+      </div>
+    `;
+  }
+
+  function submitOrderRequest(form, language = "en") {
+    const items = readCart();
+    if (!items.length) return { ok: false, code: "empty-bag", message: copy[language].empty };
+    const source = attribution();
+    const signature = requestSignature(items, source);
+    const requests = readOrderRequests();
+    const existing = requests.find((item) => item.signature === signature);
+    if (existing) {
+      renderRequestConfirmation(existing, language);
+      return { ok: true, created: false, request: existing };
+    }
+    const data = new FormData(form);
+    const request = {
+      requestId: makeRequestId(),
+      status: "request-recorded",
+      createdAt: new Date().toISOString(),
+      signature,
+      items: items.map((item) => ({
+        productId: cleanText(item.productId, 40),
+        name: cleanText(item.name, 100),
+        quantity: Math.max(1, Math.min(10, Number(item.quantity || 1))),
+      })),
+      country: cleanText(data.get("country"), 60),
+      wrist: cleanText(data.get("wrist"), 40),
+      attribution: {
+        source: source.source,
+        medium: source.medium,
+        campaign: source.campaign,
+        queueId: source.queueId || "direct",
+        audienceCohort: source.audienceCohort,
+        targetMarket: source.targetMarket,
+      },
+    };
+    requests.push(request);
+    localStorage.setItem(orderRequestsKey, JSON.stringify(requests.slice(-50)));
+    track("order_request", {
+      id: `order-request-${request.requestId}`,
+      requestId: request.requestId,
+      productId: request.items.map((item) => item.productId).join(","),
+      quantity: request.items.reduce((sum, item) => sum + item.quantity, 0),
+      country: request.country,
+    });
+    renderRequestConfirmation(request, language);
+    return { ok: true, created: true, request };
+  }
+
+  function openOrderRequest(language = "en") {
+    const items = readCart();
+    if (!items.length) return { ok: false, code: "empty-bag", message: copy[language].empty };
+    const dialog = document.querySelector("[data-order-request-dialog]");
+    const root = dialog?.querySelector("[data-order-request-content]");
+    const words = requestCopy[language] || requestCopy.en;
+    if (!dialog || !root) return { ok: false, code: "dialog-missing" };
+    document.querySelector("[data-cart-dialog]")?.close();
+    root.innerHTML = `
+      <div class="order-request-head">
+        <p class="eyebrow">ORDER REQUEST</p>
+        <button type="button" class="icon-button" data-order-request-close aria-label="${words.close}">×</button>
+      </div>
+      <div class="order-request-body">
+        <h2>${words.title}</h2>
+        <p>${words.intro}</p>
+        <div class="order-request-items"><strong>${words.items}</strong>${items.map((item) => `<span>${cleanText(item.name, 100)} ×${Math.max(1, Math.min(10, Number(item.quantity || 1)))}</span>`).join("")}</div>
+        <form data-order-request-form>
+          <label><span>${words.country}</span><input name="country" type="text" maxlength="60" autocomplete="off" placeholder="${words.countryPlaceholder}"></label>
+          <label><span>${words.wrist}</span><input name="wrist" type="text" maxlength="40" autocomplete="off" placeholder="${words.wristPlaceholder}"></label>
+          <button class="primary-button" type="submit">${words.submit}</button>
+        </form>
+      </div>
+    `;
+    dialog.showModal();
+    return { ok: true, code: "request-form-opened" };
   }
 
   function checkoutAvailability(config, items) {
@@ -303,5 +455,14 @@
 
   loadConfig().then(() => track("session_start"));
   window.addEventListener("DOMContentLoaded", updateCartCount);
-  window.VoidFormCommerce = { addToCart, checkout, checkoutAvailability, openCart, readCart, removeFromCart, renderCart, track, updateCartCount };
+  document.addEventListener("submit", (event) => {
+    const form = event.target.closest?.("[data-order-request-form]");
+    if (!form) return;
+    event.preventDefault();
+    submitOrderRequest(form, document.documentElement.lang.startsWith("zh") ? "zh" : "en");
+  });
+  document.addEventListener("click", (event) => {
+    if (event.target.closest?.("[data-order-request-close]")) document.querySelector("[data-order-request-dialog]")?.close();
+  });
+  window.VoidFormCommerce = { addToCart, checkout, checkoutAvailability, openCart, openOrderRequest, readCart, readOrderRequests, removeFromCart, renderCart, submitOrderRequest, track, updateCartCount };
 })();

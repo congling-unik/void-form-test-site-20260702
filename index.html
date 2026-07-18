@@ -61,7 +61,7 @@
           <dl class="trust-list">
             <div>
               <dt data-i18n="pricePoint">FIRST COLLECTION</dt>
-              <dd data-i18n="inStock">Checkout unavailable</dd>
+              <dd data-i18n="inStock">Order requests available</dd>
             </div>
             <div>
               <dt data-i18n="sevenDays">Wrist size</dt>
@@ -126,10 +126,6 @@
                 <option value="order" data-i18n="leadTimingCompare">Order and after-sales</option>
               </select>
             </label>
-            <label>
-              <span data-i18n="leadContact">Email or Instagram handle</span>
-              <input name="contact" type="text" placeholder="How can we reach you?" data-i18n-placeholder="leadContactPlaceholder" />
-            </label>
             <button class="primary-button" type="submit" data-save-lead data-i18n="leadSubmit">Copy inquiry &amp; open Instagram</button>
           </form>
         </div>
@@ -139,7 +135,7 @@
     <footer class="site-footer" aria-label="站点信息">
       <div>
         <strong data-i18n="footerBrand">VOID &amp; FORM</strong>
-        <p data-i18n="footerNote">Quiet bead bracelets for everyday wear. Checkout is temporarily unavailable.</p>
+        <p data-i18n="footerNote">Quiet bead bracelets for everyday wear. You can submit an order request without payment.</p>
       </div>
       <nav aria-label="政策页面" data-i18n-aria-label="footerPolicyNav">
         <a href="privacy.html" data-i18n="footerPrivacy">隐私</a>
@@ -161,7 +157,11 @@
       </div>
       <div class="cart-items" data-cart-items></div>
       <p class="cart-note" data-cart-note></p>
-      <button class="primary-button" type="button" data-cart-checkout>Checkout</button>
+      <button class="primary-button" type="button" data-order-request-open>Request this bracelet</button>
+    </dialog>
+
+    <dialog class="order-request-dialog" data-order-request-dialog>
+      <div data-order-request-content></div>
     </dialog>
 
     <div class="toast" data-toast role="status" aria-live="polite"></div>
@@ -173,7 +173,7 @@
       <a href="#inquiry"><span>☏</span><strong data-i18n="bottomService">客服</strong></a>
     </nav>
 
-    <script src="commerce.js?v=customer-1"></script>
-    <script src="script.js?v=customer-1"></script>
+    <script src="commerce.js?v=customer-2"></script>
+    <script src="script.js?v=customer-2"></script>
   </body>
 </html>

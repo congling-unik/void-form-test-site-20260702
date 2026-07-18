@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "mode": "storefront",
+  "version": 3,
+  "mode": "order-request",
   "publicPaymentEnabled": false,
   "sandboxReady": false,
   "shopify": {
@@ -18,11 +18,13 @@
   },
   "customerExperience": {
     "copyMode": "customer-facing",
-    "checkoutStatus": "temporarily-unavailable",
+    "checkoutStatus": "payment-disabled",
+    "orderRequestStatus": "available",
     "customerCareUrl": "https://www.instagram.com/duck.3428348/"
   },
   "lifecycle": {
     "shoppingBag": "available",
+    "orderRequest": "available",
     "checkout": "blocked",
     "order": "blocked",
     "shipping": "blocked",
